@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+body{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Inter", serif;
+    overflow-x: hidden;
+}
+
+
+
+
+/* HTML: <div class="loader"></div> */
+.loader {
+    width: 10px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    animation:
+      l20-1 0.8s infinite linear alternate,
+      l20-2 1.6s infinite linear;
+  }
+  @keyframes l20-1{
+     0%    {clip-path: polygon(50% 50%,0       0,  50%   0%,  50%    0%, 50%    0%, 50%    0%, 50%    0% )}
+     12.5% {clip-path: polygon(50% 50%,0       0,  50%   0%,  100%   0%, 100%   0%, 100%   0%, 100%   0% )}
+     25%   {clip-path: polygon(50% 50%,0       0,  50%   0%,  100%   0%, 100% 100%, 100% 100%, 100% 100% )}
+     50%   {clip-path: polygon(50% 50%,0       0,  50%   0%,  100%   0%, 100% 100%, 50%  100%, 0%   100% )}
+     62.5% {clip-path: polygon(50% 50%,100%    0, 100%   0%,  100%   0%, 100% 100%, 50%  100%, 0%   100% )}
+     75%   {clip-path: polygon(50% 50%,100% 100%, 100% 100%,  100% 100%, 100% 100%, 50%  100%, 0%   100% )}
+     100%  {clip-path: polygon(50% 50%,50%  100%,  50% 100%,   50% 100%,  50% 100%, 50%  100%, 0%   100% )}
+  }
+  @keyframes l20-2{ 
+    0%    {transform:scaleY(1)  rotate(0deg)}
+    49.99%{transform:scaleY(1)  rotate(135deg)}
+    50%   {transform:scaleY(-1) rotate(0deg)}
+    100%  {transform:scaleY(-1) rotate(-135deg)}
+  }
+
+/* HTML: <div class="loader"></div> */
+/* HTML: <div class="loader"></div> */
+.loading {
+  height: 4px;
+  width: 130px;
+  --c:no-repeat linear-gradient(#fff 0 0);
+  background: var(--c),var(--c),black;
+  background-size: 60% 100%;
+  animation: l16 3s infinite;
+}
+@keyframes l16 {
+  0%   {background-position:-150% 0,-150% 0}
+  66%  {background-position: 250% 0,-150% 0}
+  100% {background-position: 250% 0, 250% 0}
+}
+
+h1{
+    @apply font-bold text-[#212121] text-[2.5rem];
+}
+
+label{
+    @apply text-[#676666];
+}
+
+input[type="text"],input[type="email"],input[type="password"]{
+    @apply w-full h-[55px] p-2 border border-[#676666] rounded-[10px] text-[#212121];
+}
+
+button{
+    @apply w-full h-[55px] p-2 rounded-[10px] text-[1.125rem];
+}
+
+.loadingContainer{
+   
+  
+  animation: loadingSlide 500ms linear forwards;
+}
+
+@keyframes loadingSlide {
+  0%{
+    transform: translateX(0);
+    opacity: 	1;
+  }
+
+  20%{
+    transform: translateX(-20%);
+    opacity: 	1;
+  }
+
+  50%{
+    transform: translateX(-50%);
+    opacity: 	0.5;
+  }
+
+  75%{
+    transform: translateX(-75%);
+    opacity: 	0;
+  }
+
+  100%{
+    transform: translateX(-100%);
+    opacity: 0;
+    display: none;
+
+  }
+  
+}
