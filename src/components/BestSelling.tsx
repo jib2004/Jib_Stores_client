@@ -1,100 +1,46 @@
-import ProductCard from "./ProductCard"
+
 import { useGetAllProductQuery } from "../api/users/buyer"
 
 const BestSelling = () => {
-  const { data, isLoading, isError, error } = useGetAllProductQuery()
-
-  // Handle loading state
-  if (isLoading) {
-    return (
-      <div className="w-[90%] mx-auto flex flex-col gap-9 my-8 border-y-[2px] py-9">
-        <div className="flex flex-col gap-4">
-          <div className="flex items-center gap-4">
-            <div className="w-[20px] h-[40px] bg-[#DB4444] rounded"></div>
-            <h5 className="font-semibold text-[#DB4444]">This Month</h5>
-          </div>
-          <div className="flex justify-between items-center">
-            <h2 className="text-[36px] font-semibold">Best Selling Products</h2>
-            <div>
-              <button className="bg-[#DB4444] text-white h-[56px] w-[159px] rounded hover:bg-[#9f3131] duration-200">
-                View All
-              </button>
-            </div>
-          </div>
-        </div>
-        <div className="h-fit flex justify-center items-center py-4">
-          <div className="text-center">Loading products...</div>
-        </div>
-      </div>
-    )
-  }
-
-  // Handle error state
-  if (isError) {
-    return (
-      <div className="w-[90%] mx-auto flex flex-col gap-9 my-8 border-y-[2px] py-9">
-        <div className="flex flex-col gap-4">
-          <div className="flex items-center gap-4">
-            <div className="w-[20px] h-[40px] bg-[#DB4444] rounded"></div>
-            <h5 className="font-semibold text-[#DB4444]">This Month</h5>
-          </div>
-          <div className="flex justify-between items-center">
-            <h2 className="text-[36px] font-semibold">Best Selling Products</h2>
-            <div>
-              <button className="bg-[#DB4444] text-white h-[56px] w-[159px] rounded hover:bg-[#9f3131] duration-200">
-                View All
-              </button>
-            </div>
-          </div>
-        </div>
-        <div className="h-fit flex justify-center items-center py-4">
-          <div className="text-center text-red-500">Error loading products. Please try again later.</div>
-        </div>
-      </div>
-    )
-  }
-
-  // Check if data exists and has the expected structure
-  const products = data?.data || []
-
+  const { data, isLoading } = useGetAllProductQuery(undefined)
+  // console.log(data)
   return (
-    <div className="w-[90%] mx-auto flex flex-col gap-9 my-8 border-y-[2px] py-9">
-      <div className="flex flex-col gap-4">
-        <div className="flex items-center gap-4">
-          <div className="w-[20px] h-[40px] bg-[#DB4444] rounded"></div>
-          <h5 className="font-semibold text-[#DB4444]">This Month</h5>
+    <div className='w-[90%] mx-auto flex flex-col gap-9 my-8 border-y-[2px] py-6'>
+        <div className='h-fit  flex justify-between  py-4 '>
+          <h1 className='text-2xl font-bold'>Best Selling</h1>
+          <p className='text-sm text-gray-500'>View All</p>
         </div>
-
-        <div className="flex justify-between items-center">
-          <h2 className="text-[36px] font-semibold">Best Selling Products</h2>
-          <div>
-            <button className="bg-[#DB4444] text-white h-[56px] w-[159px] rounded hover:bg-[#9f3131] duration-200">
-              View All
-            </button>
-          </div>
+        <div className="h-fit  flex justify-between  py-4 w-full overflow-x-auto xl:w-auto">
+          {isLoading ? (
+            <>
+              <div className="animate-pulse bg-gray-200 h-64 w-48 rounded-lg"></div>
+              <div className="animate-pulse bg-gray-200 h-64 w-48 rounded-lg"></div>
+              <div className="animate-pulse bg-gray-200 h-64 w-48 rounded-lg"></div>
+              <div className="animate-pulse bg-gray-200 h-64 w-48 rounded-lg"></div>
+              <div className="animate-pulse bg-gray-200 h-64 w-48 rounded-lg"></div>
+            </>
+          ) : (
+            data?.data && data?.data.length > 0 && data?.data
+              .filter((item: any) => item.amountSold > 0)
+              .sort((a: any, b: any) => b.amountSold - a.amountSold)
+              .slice(0, 5)
+              .map((item: any, index: number) => (
+                <div key={item._id} className="flex-shrink-0">
+                  <div className="bg-white rounded-lg shadow-md p-4 w-48">
+                    <img 
+                      src={`https://res.cloudinary.com/${import.meta.env.VITE_CLOUDINARY_KEY}/image/upload/${item.image[0]}`} 
+                      alt={item.title} 
+                      className="w-full h-32 object-cover rounded-lg mb-4"
+                    />
+                    <h3 className="font-semibold text-sm mb-2 truncate">{item.title}</h3>
+                    <p className="text-lg font-bold text-green-600">₦{item.price?.toLocaleString()}</p>
+                    <p className="text-xs text-gray-500 mt-1">Sold: {item.amountSold}</p>
+                  </div>
+                </div>
+              ))
+          )}
         </div>
       </div>
-
-      <div className="h-fit flex justify-between py-4">
-        {products.length > 0 ? (
-          products
-            .slice(0, 4)
-            .map((item, index) => (
-              <ProductCard
-                key={item.id || index}
-                name={item.title}
-                img={item.image}
-                price={item.price}
-                rating={item.rating}
-              />
-            ))
-        ) : (
-          <div className="w-full text-center py-8">
-            <p className="text-gray-500">No products available at the moment.</p>
-          </div>
-        )}
-      </div>
-    </div>
   )
 }
 

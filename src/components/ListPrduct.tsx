@@ -54,23 +54,23 @@ const ListPrduct = ({id,name,price,img,rating,isDiscounted,discountPrice}:produc
         <button 
         onClick={() => dispatch(setQuantity({
             id,
-            quantity:quantityValue?.quantity + 1,
+            quantity:(quantityValue?.quantity || 0) + 1,
             
         }))}
         
         className='size-[40px] bg-black text-white font-bold text-3xl rounded-full flex items-center justify-center'><IoIosAdd/></button>
-        <span className='text-xl'>{quantityValue?.quantity}</span>
+        <span className='text-xl'>{quantityValue?.quantity || 0}</span>
         <button 
         onClick={() => dispatch(setQuantity({
             id,
-            quantity:quantityValue?.quantity - 1,
+            quantity:(quantityValue?.quantity || 0) - 1,
             
         }))}
         className='size-[40px] bg-black text-white font-bold text-3xl rounded-full flex items-center justify-center'><TiMinus/></button>
        </div>
 </div>
        <p className='text-lg font-semibold my-2'>
-        <span>Total: &#8358;{quantityValue?.price ?quantityValue.price.toLocaleString() : quantityValue?.basePrice.toLocaleString()}</span>
+        <span>Total: &#8358;{quantityValue?.price ? quantityValue.price.toLocaleString() : (quantityValue?.basePrice || 0).toLocaleString()}</span>
             {/* <span className='text-gray-500'>Total:</span> &#8358;{isDiscounted ? discountPrice * quantity : price * quantity} */}
        </p>
        </div>

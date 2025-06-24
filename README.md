@@ -50,8 +50,22 @@ export default tseslint.config({
 ```
 
 ## Environment variables
-VITE_CLERK_PUBLISHABLE_KEY=
-VITE_FIREBASE_API_KEY = 
-VITE_CLOUDINARY_KEY = 
-VITE_LOADING_TIMER =
-VITE_PAYSTACK_SECRET_KEY = 
+# Firebase Configuration
+VITE_FIREBASE_API_KEY=your_firebase_api_key
+VITE_FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
+VITE_FIREBASE_PROJECT_ID=your_project_id
+VITE_FIREBASE_STORAGE_BUCKET=your_project.firebasestorage.app
+VITE_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
+VITE_FIREBASE_APP_ID=your_app_id
+VITE_FIREBASE_MEASUREMENT_ID=your_measurement_id
+
+# Backend URLs
+VITE_API_BASE_URL=https://your-backend-api.com
+VITE_SOCKET_URL=https://your-backend-socket.com
+
+# Paystack
+VITE_PAYSTACK_PUBLIC_KEY=your_paystack_public_key
+
+# Cloudinary
+VITE_CLOUDINARY_CLOUD_NAME=your_cloudinary_cloud_name
+VITE_CLOUDINARY_UPLOAD_PRESET=your_upload_preset

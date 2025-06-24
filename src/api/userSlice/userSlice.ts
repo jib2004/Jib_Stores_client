@@ -2,19 +2,30 @@ import { createSlice } from "@reduxjs/toolkit";
 import { userDetails } from "../../types";
 
 const initialState:userDetails={
-    _id:'',
-    name:'',
-    email:'',
-    phoneNumber:'',
-    address:'',
-    profilePicture:"",
+    _id:null,
+    name:null,
+    email:null,
+    phoneNumber:null,
+    address:undefined,
+    profilePicture:null,
     role:"user",
-    isVerified:false,
-    isBlocked:false,
+    isVerified:null,
+    isBlocked:null,
     searchHistory:[],
     cart:[],
-    wishlist:[] ,
+    wishlist:[],
     orders:[],
+    isSeller:false,
+    isCACLegit:false,
+    plan:"",
+    sales:[],
+    wallet:{
+        balance:0,
+        currency:"NGN",
+        lastTransaction:"",
+        lastTransactionDate:"",
+        lastTransactionAmount:0
+    },
     message:''
 }
 
@@ -23,24 +34,32 @@ export const userSlice = createSlice({
     initialState,
     reducers:{
         getUserDetails:(state,action)=>{
-           return state = action.payload;
+           return action.payload;
         },
         setEmailForPasswordChange:(state,action)=>{
-           return  state.email=action.payload;
+           state.email=action.payload;
         },
          // Alternatively, you can add reducer to add single item:
         addToWishlist(state, action) {
-            state.wishlist.push(action.payload);
+            if (state.wishlist) {
+                state.wishlist.push(action.payload);
+            }
         },
         // And remove item by id or value if needed:
         removeFromWishlist(state, action) {
-            state.wishlist = state.wishlist.filter(item => item !== action.payload);
+            if (state.wishlist) {
+                state.wishlist = state.wishlist.filter(item => item !== action.payload);
+            }
         },
         addedProductToCart(state, action) {
-            state.cart.push(action.payload);   
+            if (state.cart) {
+                state.cart.push(action.payload);
+            }
         },
         removeFromCart(state, action) {
-            state.cart = state.cart.filter(item => item !== action.payload);
+            if (state.cart) {
+                state.cart = state.cart.filter(item => item !== action.payload);
+            }
         },
         setUserAddress:(state,action)=>{
             state.address = action.payload.address

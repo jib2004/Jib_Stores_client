@@ -19,8 +19,8 @@ const Navbar = () => {
 
         <div className='flex items-center gap-3 pr-6'>
           { user.name && <p>Hi {user.name}</p>}
-          <div>{user.email ? <AccountMenu name={user.name}  src={user.profilePicture} isSeller={user.isSeller}/> : <NotSignedIn/>}</div>
-          <div><Cart id={user._id} cart={user.cart?.length}/></div>
+          <div>{user.email ? <AccountMenu name={user.name || undefined}  src={user.profilePicture || undefined} isSeller={user.isSeller}/> : <NotSignedIn/>}</div>
+          <div><Cart id={user._id || undefined} cart={user.cart?.length}/></div>
         </div>
 
     </nav>

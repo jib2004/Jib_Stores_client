@@ -10,7 +10,7 @@ export const buyerApi = createApi({
         tagTypes:['Buyer'],
         endpoints:(builder)=>({
             getAllProduct:builder.query({
-                query: () =>'/product'
+                query: (_void) =>'/product'
             }),
             getProductById:builder.query({
                 query:({id,userId}) => `/product/${id}/${userId}`

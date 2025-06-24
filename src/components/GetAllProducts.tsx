@@ -5,7 +5,7 @@ import { Suspense } from "react"
 import ProductCardSkeleton from "./ProdctCardKeleton"
 
 const GetAllProducts = () => {
-    const {data,status,error} = useGetAllProductQuery()
+    const {data,status,error} = useGetAllProductQuery(undefined)
     // console.log(data)
     if(error){
         console.log(error)
@@ -24,8 +24,8 @@ const GetAllProducts = () => {
           </>
           :
           <div className="h-fit  flex justify-between  py-4 w-full overflow-x-auto xl:w-auto">
-          {data?.data && data?.data.length > 0 && data?.data.map((item)=>(
-          <Link to={`/user/product/${item._id}`}> <ProductCard name={item.title} img={`https://res.cloudinary.com/${import.meta.env.VITE_CLOUDINARY_KEY}/image/upload/${item.image[0]}`} price={item.price} rating={item.rating} isDiscounted={item.isDisCount} discountPrice={item.discountedPrice} /></Link>
+          {data?.data && data?.data.length > 0 && data?.data.map((item: any)=>(
+          <Link key={item._id} to={`/user/product/${item._id}`}> <ProductCard name={item.title} img={`https://res.cloudinary.com/${import.meta.env.VITE_CLOUDINARY_KEY}/image/upload/${item.image[0]}`} price={item.price} rating={item.rating} isDiscounted={item.isDisCount} discountPrice={item.discountedPrice} /></Link>
           ))}
           </div>
           }
