@@ -6,6 +6,7 @@ import { getUserDetails } from '../../../api/userSlice/userSlice'
 import { useUserDetailsUpdateMutation,useUserCreatePlanMutation } from '../../../api/users/auth'
 import { useState,useEffect } from 'react'
 import Loading from '../../../components/Loading'
+// import { userDetails } from '../../../types'
 
 const SellerPlan = () => {
     const navigate =  useNavigate()
@@ -17,7 +18,7 @@ const SellerPlan = () => {
     
     const getStarted = async() =>{
         try {
-            const res = await update({id:user._id,body:{plan: 'free',isSeller:true}}).unwrap()
+            const res = await update({id:user._id,body:{plan: 'free',isSeller:true} as userDetails}).unwrap()
             dispatch(getUserDetails(res.data))
             navigate('/dashboard')
         } catch (error) {
@@ -27,7 +28,7 @@ const SellerPlan = () => {
         
     }
 
-    const subscribe = async (e) =>{
+    const subscribe = async (e: React.ChangeEvent<HTMLInputElement>) =>{
     //    const title = e.target.parentElement.previousSibling.previousSibling.firstElementChild.textContent.toLowerCase()
        const price:number = Number(e.target.parentElement.previousSibling.previousSibling.firstElementChild.nextSibling.firstElementChild.textContent.slice(1,8))
        let plan:string|undefined = undefined 
@@ -89,7 +90,7 @@ const SellerPlan = () => {
             title='Basic' 
             price={10000}
             btnText='Buy Now' 
-            planFunc={subscribe}
+            planFunc={() => subscribe()}
             offer={[
                 'Increased product listings (up to 20 products)',
                 'Enhanced analytics (sales tracking, customer demographics)',
@@ -102,7 +103,7 @@ const SellerPlan = () => {
             title='Standard' 
             price={20000}
             btnText='Buy Now'
-            planFunc={subscribe} 
+            planFunc={() => subscribe()} 
             offer={[
                 'Unlimited product listings',
                 'Advanced analytics (detailed reports, customer behavior insights)',

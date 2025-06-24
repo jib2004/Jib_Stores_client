@@ -23,7 +23,6 @@ const UpdateProduct = () => {
     const [isDiscount, setIsDiscount] = useState(false);
     const [productInfo,setProductInfo] = useState(null)
     const [productImages,setProductImages] = useState([])
-     const [imageLoading,setImageLoading] = useState(false)
     const [deleteImageById] = useDeleteImagePublicIdMutation()
     const [Upload] = useUploadImageMutation()
     const [update] = useUpdateProductMutation() 
@@ -34,15 +33,15 @@ const UpdateProduct = () => {
         for(let i = 0; i < files.length; i++){
             data.append('files',files[i])
         }
-        setImageLoading(true)
+        // setImageLoading(true)
         
         try {
             const res = await Upload(data).unwrap()
             setProductImages((prev)=>[...prev, ...res.data])
-            setImageLoading(false)
+            // setImageLoading(false)
         } catch (error) {
             console.log(error)
-            setImageLoading(false)
+            // setImageLoading(false)
         }
     };
 

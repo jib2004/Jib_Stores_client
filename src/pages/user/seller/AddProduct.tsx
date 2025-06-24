@@ -24,7 +24,6 @@ const AddProduct = () => {
     const user = useAppSelector(state=> state.user)
     const navigate = useNavigate()
     const [deleteImageById] = useDeleteImagePublicIdMutation()
-    const [isDisabled,setIsDisabled] = useState<boolean>(false)
     
     const parentVariant ={
             hidden:{opacity:0},
@@ -121,7 +120,7 @@ const AddProduct = () => {
       } = useForm<Inputs>()
       const onSubmit: SubmitHandler<Inputs> = async(data) =>{
         setTimeout(()=>{
-            setIsDisabled(true)
+            // setIsDisabled(true)
         },5000)
         try {
             const response = await addProduct({id:user._id,body:data}).unwrap()
@@ -350,16 +349,16 @@ const AddProduct = () => {
 
         <div className='flex justify-end mt-4'>
             <button 
-            disabled={isDisabled} 
+            // disabled={isDisabled} 
             className='bg-[black] hover:bg-[#313131] active:bg-black disabled:bg-[#313131] duration-300 text-white w-[20%]'>
-                {isDisabled?
+                {/* {isDisabled?
                 <motion.p variants={parentVariant} initial='hidden' animate="visible">
                     Loading
                     <motion.span variants={childVariant}>.</motion.span>
                     <motion.span variants={childVariant}>.</motion.span>
                     <motion.span variants={childVariant}>.</motion.span></motion.p> 
                 : 
-                'Add Product'}
+                'Add Product'} */}
             </button>
         </div>
 
