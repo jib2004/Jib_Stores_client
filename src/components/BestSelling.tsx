@@ -21,10 +21,10 @@ const BestSelling = () => {
             </>
           ) : (
             data?.data && data?.data.length > 0 && data?.data
-              .filter((item: any) => item.amountSold > 0)
-              .sort((a: any, b: any) => b.amountSold - a.amountSold)
+              .filter((item) => item.amountSold > 0)
+              .sort((a, b) => b.amountSold - a.amountSold)
               .slice(0, 5)
-              .map((item: any, index: number) => (
+              .map((item) => (
                 <div key={item._id} className="flex-shrink-0">
                   <div className="bg-white rounded-lg shadow-md p-4 w-48">
                     <img 

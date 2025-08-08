@@ -2,18 +2,18 @@ import {useEffect, useState} from 'react'
 import { useReviewProductQuery,useUpdateProductMutation,useDeleteImagePublicIdMutation,useUploadImageMutation } from '../../../api/users/seller'
 import { useParams,useNavigate } from 'react-router'
 import SellerMain from './SellerMain'
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm, SubmitHandler} from "react-hook-form";
 import { FaCloudUploadAlt } from "react-icons/fa";
 import { IoClose } from "react-icons/io5";
-import Box from '@mui/material/Box';
-import Skeleton from '@mui/material/Skeleton';
 import { useAppSelector } from '../../../hooks/hooks';
+import { toast,Toaster } from 'sonner';
+import { ProductInputs } from '../../../types';
 
 const UpdateProduct = () => {
     const {sellerId,id} = useParams()
     const navigate = useNavigate()
     const user = useAppSelector(state=>state.user)
-    const {data,status} = useReviewProductQuery({id,sellerId},{
+    const {data} = useReviewProductQuery({id,sellerId},{
         skip:!id,
         refetchOnMountOrArgChange: true, // refetch when component mounts or argument changes
         refetchOnFocus: true, // refetch when window/tab gains focus
@@ -82,19 +82,19 @@ const UpdateProduct = () => {
             setValue,
             reset,
             formState: { errors },
-          } = useForm<Inputs>({defaultValues:{
+          } = useForm<ProductInputs>({defaultValues:{
              title: '',
-      price: '',
+      price: 0,
       description: '',
       category: '',
-      stock: '',
-      discountedPrice: ''
+      stock:0,
+      discountedPrice: 0
           }})
-          const onSubmit: SubmitHandler<Inputs> = async(data) =>{
+          const onSubmit: SubmitHandler<ProductInputs> = async(data) =>{
             
                
             try {
-                const res = await update({id,sellerId,body:data}).unwrap()
+                await update({id,sellerId,body:data}).unwrap()
                 navigate(`/seller/product/${user._id}`)
             } catch (error) {
                 console.log(error)
@@ -105,6 +105,11 @@ const UpdateProduct = () => {
         setValue('keywords',keyword)
         setValue('image',productImages)
         setValue('sellerName',user.name)
+
+          const handleCheckboxChange = (e) => {
+    setIsDiscount((e.target as HTMLInputElement).checked)
+  };
+    
 
         useEffect(()=>{
             if(data){
@@ -195,7 +200,7 @@ const UpdateProduct = () => {
 
         <div>
             <label htmlFor="stock" className='block text-gray-700  font-bold mb-2'>Stock Quantity*</label>
-            <input  {...register('stock',{
+            <input min={0} {...register('stock',{
                 required: "Stock is required",
                 pattern:{
                    value: /^[0-9]+$/, // Pattern for positive integers
@@ -215,7 +220,7 @@ const UpdateProduct = () => {
                 
                     <input {
                         ...register('isDisCount')
-                    } onClick={(e)=>{setIsDiscount(e.target.checked)}}  checked={isDiscount} className='cursor-pointer' type="checkbox" name="isDisCount" id="isDisCount" />
+                    } onClick={handleCheckboxChange}  checked={isDiscount} className='cursor-pointer' type="checkbox" name="isDisCount" id="isDisCount" />
                     <label htmlFor="discount">Discount</label>
             </div>
 
@@ -299,6 +304,7 @@ const UpdateProduct = () => {
 
         </form>
         </div>
+        <Toaster position='top-right'/>
     </SellerMain>
   )
 }

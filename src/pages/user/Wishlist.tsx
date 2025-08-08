@@ -29,7 +29,7 @@ const Wishlist = () => {
             for (const id of productId){
 
               try {
-                const res = await axios.get(`http://localhost:5000/buyer/product/${id}/${user._id}`);
+                const res = await axios.get(`https://jib-stores-backend.vercel.app/buyer/product/${id}/${user._id}`);
                    const newProduct = res.data.data;
                  setProducts((prev) => {
         // Check if the product already exists in the array

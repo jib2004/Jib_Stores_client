@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { productDetails } from '../../types'
+
 
 export const sellerApi =  createApi({
     reducerPath:'sellerApi',
@@ -9,7 +9,7 @@ export const sellerApi =  createApi({
     }),
     tagTypes:['Seller'],
     endpoints:(builder)=>({
-        getProducts:builder.query<productDetails,Partial<productDetails>>({
+        getProducts:builder.query({
             query:(id)=> `/product/${id}`,
             
         }),

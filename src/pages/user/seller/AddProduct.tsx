@@ -9,14 +9,15 @@ import Box from '@mui/material/Box';
 import Skeleton from '@mui/material/Skeleton';
 import { FaCloudUploadAlt } from "react-icons/fa";
 import { IoClose } from "react-icons/io5";
-import { motion } from 'framer-motion';
+import {  ProductInputs } from '../../../types';
+// import { motion } from 'framer-motion';
 
 const AddProduct = () => {
     const [isDiscount, setIsDiscount] = useState(false);
     const [image, setImage] = useState([]);
     const [imageLoading,setImageLoading] = useState(false)
     const [imageUrl, setImageUrl] = useState('');
-    const [uploadedImageUrl, setUploadedImageUrl] = useState([])
+    const [uploadedImageUrl, setUploadedImageUrl] = useState<string[]>([])
     const [keywordName,setKeyWordName] = useState('')
     const [keyword, setKeyword] = useState([])
     const [addProduct] = useAddProductMutation()
@@ -25,28 +26,28 @@ const AddProduct = () => {
     const navigate = useNavigate()
     const [deleteImageById] = useDeleteImagePublicIdMutation()
     
-    const parentVariant ={
-            hidden:{opacity:0},
-            visible:{
-                opacity:1,
-                transition:{
-                  staggerChildren:1,
-                //   repeat:Infinity
-                }
-        }
-    }
-    const childVariant={
-        hidden:{opacity:0, y:20},
-        visible:{opacity:1, y:0,
-        transition: {
-      duration: 0.8,
-      repeat: Infinity,
-      repeatType: "loop",
-      ease: "easeInOut",
-      repeatDelay:0.5
-    },
-        }
-    }
+    // const parentVariant ={
+    //         hidden:{opacity:0},
+    //         visible:{
+    //             opacity:1,
+    //             transition:{
+    //               staggerChildren:1,
+    //             //   repeat:Infinity
+    //             }
+    //     }
+    // }
+    // const childVariant={
+    //     hidden:{opacity:0, y:20},
+    //     visible:{opacity:1, y:0,
+    //     transition: {
+    //   duration: 0.8,
+    //   repeat: Infinity,
+    //   repeatType: "loop",
+    //   ease: "easeInOut",
+    //   repeatDelay:0.5
+    // },
+    //     }
+    // }
 
     
 
@@ -80,7 +81,7 @@ const AddProduct = () => {
 
     const deleteKeyword = (index:number) =>{
          keyword.splice(index,1)
-        setKeyword((prev)=>[ ...keyword])
+        setKeyword((prev)=>[ ...prev,...keyword])
     }
 
     const deleteImageUrl = (index:number) =>{
@@ -117,13 +118,13 @@ const AddProduct = () => {
         handleSubmit, 
         setValue,
         formState: { errors },
-      } = useForm<Inputs>()
-      const onSubmit: SubmitHandler<Inputs> = async(data) =>{
+      } = useForm<ProductInputs>()
+      const onSubmit: SubmitHandler<ProductInputs> = async(data) =>{
         setTimeout(()=>{
             // setIsDisabled(true)
         },5000)
         try {
-            const response = await addProduct({id:user._id,body:data}).unwrap()
+        await addProduct({id:user._id,body:data}).unwrap()
         navigate(`/seller/product/${user._id}`)
         
         } catch (error) {
@@ -145,7 +146,9 @@ const AddProduct = () => {
       setValue('keywords',keyword)
 
 
-
+  const handleCheckboxChange = (e) => {
+    setIsDiscount((e.target as HTMLInputElement).checked)
+  };
     
 
   return (
@@ -218,7 +221,7 @@ const AddProduct = () => {
 
         <div>
             <label htmlFor="stock" className='block text-gray-700  font-bold mb-2'>Stock Quantity*</label>
-            <input {...register('stock',{
+            <input min={0} {...register('stock',{
                 required: "Stock is required",
                 pattern:{
                    value: /^[0-9]+$/, // Pattern for positive integers
@@ -238,7 +241,12 @@ const AddProduct = () => {
                 
                     <input {
                         ...register('isDisCount')
-                    } onClick={(e)=>{setIsDiscount(e.target.checked)}} checked={isDiscount} className='cursor-pointer' type="checkbox" name="isDisCount" id="isDisCount" />
+                    } 
+                    onClick={handleCheckboxChange} 
+                    checked={isDiscount} 
+                    className='cursor-pointer' 
+                    type="checkbox" 
+                    name="isDisCount" id="isDisCount" />
                     <label htmlFor="discount">Discount</label>
             </div>
 

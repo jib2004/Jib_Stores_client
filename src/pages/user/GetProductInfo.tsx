@@ -63,7 +63,7 @@ const GetProductInfo = () => {
     const handleCart = async() =>{
         try {
             // setAddedToCart(prev => !prev);
-            const res = await addToCart({id:user._id, body:{addCart:data.data?._id}}).unwrap()
+            await addToCart({id:user._id, body:{addCart:data.data?._id}}).unwrap()
             const findCart = user.cart.find((item) => item === data.data?._id);
             if (findCart) {
                 toast.success('Removed from cart')

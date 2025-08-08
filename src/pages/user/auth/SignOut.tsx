@@ -14,7 +14,7 @@ import { getUserDetails } from '../../../api/userSlice/userSlice';
 
 
 const SignUp = () => {
-  const [signUp, { isLoading, isError, error }] = useSignUpMutation();
+  const [signUp, {  isError, error }] = useSignUpMutation();
   const[googleSignUp] =useGoogleAuthMutation()
   const dispatch = useAppDispatch()
 
@@ -54,7 +54,7 @@ const SignUp = () => {
     const res = await googleSignUp({
       name:result.user.displayName,
       email:result.user.email,
-      profilePicture: result.user.photoURL
+      // profilePicture: result.user.photoURL
     }).unwrap()
     toast(res?.message)
     

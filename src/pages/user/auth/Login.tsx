@@ -51,7 +51,7 @@ const Login = () => {
     const res = await googleAuth({
       name:result.user.displayName,
       email:result.user.email,
-      profilePicture: result.user.photoURL
+      // profilePicture: result.user.photoURL
     }).unwrap()
     toast(res?.data.message)
     dispatch(getUserDetails(res.data))

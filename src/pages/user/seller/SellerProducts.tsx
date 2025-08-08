@@ -3,32 +3,38 @@ import { FaPlusCircle } from "react-icons/fa"
 import { useGetProductsQuery } from "../../../api/users/seller"
 import { useParams,useNavigate, Link } from "react-router"
 import ProductCard from "../../../components/ProductCard"
-import Box from '@mui/material/Box';
-import Skeleton from '@mui/material/Skeleton';
-import { Suspense, useEffect } from "react"
+import { Suspense, useEffect,useState } from "react"
 import ProductCardSkeleton from "../../../components/ProdctCardKeleton"
+import { productDetails } from "../../../types"
+
 
 
 const SellerProducts = () => {
   const {id} = useParams()
   const navigate = useNavigate()
+  const [userProducts, setUserProducts] = useState<productDetails[] | []>([])
 
   
-  const {data,status,error} = useGetProductsQuery(id,{
+  const {data,status,error} = useGetProductsQuery(id ,{
     skip:!id,
       refetchOnMountOrArgChange: true, // refetch when component mounts or argument changes
     refetchOnFocus: true, // refetch when window/tab gains focus
   })
 
-  if(error?.status === 401){
-    navigate('/login')
-  }
+
+if (error && 'status' in error && error.status === 401) {
+  navigate('/login');
+}
 
   const navigateToAddPage =() =>{
     navigate("/seller/product/add")
   }
 
-  useEffect(()=>{},[data])
+  useEffect(()=>{
+    if(data ){
+      setUserProducts(data?.data as productDetails[])
+    }
+  },[data])
   
   return (
     <SellerMain>
@@ -51,7 +57,7 @@ const SellerProducts = () => {
               <ProductCardSkeleton />
             </>
           : 
-          data?.data.map(product=>(
+          userProducts?.map(product=>(
             <Link to={`/seller/product/review/${product._id}`} className=""><ProductCard name={product.title} img={product.image[0]?.includes('http')? product.image[0]: `https://res.cloudinary.com/${import.meta.env.VITE_CLOUDINARY_KEY}/image/upload/${product.image[0]}`} price={product.price} rating={product?.rating} isDiscounted={product.isDisCount} discountPrice={product.discountedPrice}  /></Link>
           ))
           }

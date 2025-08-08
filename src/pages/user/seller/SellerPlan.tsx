@@ -6,7 +6,7 @@ import { getUserDetails } from '../../../api/userSlice/userSlice'
 import { useUserDetailsUpdateMutation,useUserCreatePlanMutation } from '../../../api/users/auth'
 import { useState,useEffect } from 'react'
 import Loading from '../../../components/Loading'
-// import { userDetails } from '../../../types'
+import { userDetails } from '../../../types'
 
 const SellerPlan = () => {
     const navigate =  useNavigate()
@@ -28,9 +28,9 @@ const SellerPlan = () => {
         
     }
 
-    const subscribe = async (e: React.ChangeEvent<HTMLInputElement>) =>{
+    const subscribe = async (amt:number) =>{
     //    const title = e.target.parentElement.previousSibling.previousSibling.firstElementChild.textContent.toLowerCase()
-       const price:number = Number(e.target.parentElement.previousSibling.previousSibling.firstElementChild.nextSibling.firstElementChild.textContent.slice(1,8))
+       const price:number = amt 
        let plan:string|undefined = undefined 
        
        if(price == 20000){
@@ -90,7 +90,7 @@ const SellerPlan = () => {
             title='Basic' 
             price={10000}
             btnText='Buy Now' 
-            planFunc={() => subscribe()}
+            planFunc={() => subscribe(10000)}
             offer={[
                 'Increased product listings (up to 20 products)',
                 'Enhanced analytics (sales tracking, customer demographics)',
@@ -103,7 +103,7 @@ const SellerPlan = () => {
             title='Standard' 
             price={20000}
             btnText='Buy Now'
-            planFunc={() => subscribe()} 
+            planFunc={() => subscribe(20000)} 
             offer={[
                 'Unlimited product listings',
                 'Advanced analytics (detailed reports, customer behavior insights)',

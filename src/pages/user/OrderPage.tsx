@@ -1,25 +1,29 @@
 import {useState,useMemo} from 'react'
 import App from '../../App'
 import { useGetUserOrdersQuery } from '../../api/users/buyer'
-import { useAppSelector,useAppDispatch } from '../../hooks/hooks'
+// import { useAppSelector,useAppDispatch } from '../../hooks/hooks'
 import { useParams } from 'react-router'
-import { productDetails } from '../../types'
-import axios from 'axios'
-import { useNavigate } from 'react-router'
+// import { productDetails } from '../../types'
+// import axios from 'axios'
+// import { useNavigate } from 'react-router'
 import StatusTag from '../../components/OrderTag'
 
 
 const OrderPage = () => {
   const {id} = useParams()
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
   const [products, setProducts] = useState([]);
-  const {user} = useAppSelector(state =>state)
-  const dispatch = useAppDispatch()
+  // const {user} = useAppSelector(state =>state)
+  // const dispatch = useAppDispatch()
   const {data,error,status} = useGetUserOrdersQuery(id,{
     skip:!id
   })
 
   // console.log(data)
+
+  if(status === 'rejected'){
+    console.log(error)
+  }
   
 
   // const orderProduct = data?.data?.map((item)=>{

@@ -1,4 +1,3 @@
-import {useEffect} from 'react'
 import App from '../../../App'
 import pendingImg from '../../../assets/img/wall-clock.png'
 import successImg from '../../../assets/img/check (1).png'
@@ -52,7 +51,7 @@ const ConfirmSubscription = () => {
                 <figcaption  className=' capitalize text-xl font-semibold'>{subscriptionStatus}</figcaption>
                 </figure>
 
-                 <div class="loading"></div> 
+                 <div className="loading"></div> 
 
                 <ul className='flex flex-col items-center w-[80%] gap-4 mx-auto'>
                     <li>Date: <span className=' font-semibold'>{date.toDateString()}</span> </li>

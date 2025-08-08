@@ -13,17 +13,17 @@ const Review = () => {
     const [image,setImage] = useState(0)
     const [open, setOpen] = useState(false);
     const user = useAppSelector(state => state.user)
-    const {data,status,error,isError} = useReviewProductQuery({id,sellerId:user._id},{
+    const {data,status,isError} = useReviewProductQuery({id,sellerId:user._id},{
         skip:!id,
           refetchOnMountOrArgChange: true, // refetch when component mounts or argument changes
             refetchOnFocus: true, // refetch when window/tab gains focus
     })
 
     if(isError){
-        toast.error(error?.data?.message)
+        toast.error( 'An error occurred while fetching the product review.')
        
     }
-    let rate = data?.data.rating?.rate.reduce((a,c)=>a +c,0)
+    const rate = data?.data.rating?.rate.reduce((a,c)=>a +c,0)
     const handleDialogue = () =>{
         setOpen(!open)
     }

@@ -26,11 +26,6 @@ const CartPage = () => {
     const user = useAppSelector(state => state.user)
     const quantity =  useAppSelector(state => state.quantity)
     
-    // if(isError){
-    //      toast.error(error.data?.message || "An error occurred while fetching the cart data.");
-      
-     
-    // }
 
     const navigateToCheckout  = () =>{
       if(products.length === 0){
@@ -38,13 +33,17 @@ const CartPage = () => {
       }
       navigate(`/user/checkout/${user._id}`)
     }
+    if(isError){
+      console.log(error)
+    }
 
+    
     useEffect(()=>{
       const getCart = async (productId) =>{
         for (const id of productId){
     
           try {
-                  const res = await axios.get(`http://localhost:5000/buyer/product/${id}/${user._id}`);
+                  const res = await axios.get(`https://jib-stores-backend.vercel.app/buyer/product/${id}/${user._id}`);
                   const newProduct = res.data.data;
                   setProducts((prev) => {
                   // Check if the product already exists in the array

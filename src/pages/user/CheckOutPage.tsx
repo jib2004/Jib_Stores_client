@@ -6,11 +6,12 @@ import { useUserDetailsUpdateMutation } from '../../api/users/auth'
 import { setUserAddress } from '../../api/userSlice/userSlice'
 import { useParams } from 'react-router'
 import PaystackButton from '../../components/PaystackButton'
+import { Toaster } from 'sonner'
 
 const CheckOutPage = () => {
   const [address,setAddress] = useState<string | undefined>('')
   const quantity = useAppSelector(state=> state.quantity)
-  const user = useAppSelector(state => state.user)
+  const user = useAppSelector(state => state?.user)
   const [loading,setLoading]  = useState<boolean>(false)
   const dispatch = useAppDispatch()
   const [updateuserAddress] = useUserDetailsUpdateMutation()
@@ -28,7 +29,7 @@ const CheckOutPage = () => {
   const handleAdressUpdate = async() =>{
     setLoading(true)
     try {
-      const res = await updateuserAddress({id,body:{address}}).unwrap()
+      await updateuserAddress({id,body:{address}}).unwrap()
       dispatch(setUserAddress({address}))
       setTimeout(()=>{
         setLoading(false)
@@ -100,6 +101,7 @@ const CheckOutPage = () => {
 
           
       </motion.div>
+      <Toaster position='top-right' richColors closeButton />
     </App>
   )
 }
