@@ -1,12 +1,11 @@
-import HalfRating from './Rating'
+// import HalfRating from './Rating'
 
 type productProp={
-    id?:string
     name: string,
     price: number,
     img:string,
     rating?:{
-        rate: number,
+        rate: number[],
         count: number
     },
     isDiscounted?:boolean,
@@ -15,7 +14,7 @@ type productProp={
     isFavorite?:boolean
 }
 
-const ProductCard = ({id,name,price,img,rating,isDiscounted,discountPrice}:productProp) => {
+const ProductCard = ({name,price,img,isDiscounted,discountPrice}:productProp) => {
   return (
     <div className='w-[270px]  rounded-md h-[350px] cursor-pointer relative bg-white shadow-sm hover:shadow-lg duration-200'>
         <div className='bg-[#F5F5F5] h-[250px] rounded  flex justify-center items-center'>
@@ -30,10 +29,12 @@ const ProductCard = ({id,name,price,img,rating,isDiscounted,discountPrice}:produ
             {isDiscounted && <p>{discountPrice}</p>} <p className={` ${isDiscounted && ' line-through text-[#666666]' }`}>&#8358;{price}</p>
         </div>
 
-        <div className='flex gap-1'>
-            <HalfRating rating={rating?.rate}/>
+        {/* <div className='flex gap-1'>
+            <HalfRating rating={rating?.rate.reduce((a,c)=>{
+                return a + c
+            },0)}/>
             <p className='text-[#666666]'>{rating?.count} reviews</p>
-        </div>
+        </div> */}
     </div> 
 
 

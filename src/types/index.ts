@@ -24,8 +24,8 @@ export interface productDetails{
     image:string[] | null;
     category:string | null;
     rating?:{
-        rate:number[],
-        count:number
+        rate?:number[],
+        count?:number
     }
     stock:number | null;
     reviews?:[],

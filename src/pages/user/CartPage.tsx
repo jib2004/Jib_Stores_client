@@ -27,9 +27,9 @@ const CartPage = () => {
     const quantity =  useAppSelector(state => state.quantity)
     
 
-    const navigateToCheckout  = () =>{
+    const navigateToCheckout  = ():void =>{
       if(products.length === 0){
-        return toast.error('Please add to cart')
+        toast.error('Please add to cart')
       }
       navigate(`/user/checkout/${user._id}`)
     }

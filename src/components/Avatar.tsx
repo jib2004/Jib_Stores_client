@@ -80,10 +80,11 @@ export default function AccountMenu({name,src}:avatarProp) {
   }
 
 
-  function stringAvatar(name: string | undefined) {
-    if(name) return `${name.split(' ')[0][0]}${name.split(' ')[1][0]}`
-  }
-
+function stringAvatar(name: string | undefined) {
+  if (!name) return '??'; // Handle undefined/empty case
+  const parts = name.split(' ');
+  return `${parts[0][0]}${parts[1]?.[0] ?? ''}`; // Safe array access
+}
 
   return (
     <React.Fragment>
