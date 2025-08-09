@@ -36,7 +36,7 @@ const SignUp = () => {
     setTimeout(() => {
       setDisabled(false)
     }, 4000);
-    navigate('/')
+    navigate('/login')
     dispatch(getUserDetails(res.data))
     } catch (error) {
       toast.error(error?.data.message)
