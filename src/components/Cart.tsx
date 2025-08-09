@@ -4,6 +4,7 @@ import IconButton from '@mui/material/IconButton';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Link } from 'react-router';
 
+
 const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
   '& .MuiBadge-badge': {
     right: 1,
@@ -18,9 +19,11 @@ type cartProp={
 }
 
 
+
+
 export default function Cart({cart,id}:cartProp) {
   return (
-    <Link to={`/user/cart/${id}`}>
+    <Link to={id ? `/user/cart/${id}` : '/login'}>
     <IconButton aria-label="cart"  className='size-6'>
       <StyledBadge badgeContent={cart} color={'error'} overlap="circular">
         <ShoppingCartIcon sx={{color:"black",width:35,height:35}}/>

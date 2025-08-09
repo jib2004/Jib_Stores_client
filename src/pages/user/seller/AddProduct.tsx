@@ -367,6 +367,7 @@ const AddProduct = () => {
                     <motion.span variants={childVariant}>.</motion.span></motion.p> 
                 : 
                 'Add Product'} */}
+                Add Product
             </button>
         </div>
 

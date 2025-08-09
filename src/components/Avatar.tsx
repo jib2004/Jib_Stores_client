@@ -131,7 +131,7 @@ function stringAvatar(name: string | undefined) {
                 height: 10,
                 bgcolor: 'background.paper',
                 transform: 'translateY(-50%) rotate(45deg)',
-                zIndex: 0,
+                zIndex: 10,
               },
             },
           },

@@ -69,6 +69,9 @@ const NotSignedIn = () => {
             placement="bottom-start"
             transition
             disablePortal
+            sx={{
+              zIndex: 10, // Ensure the popper is above other elements
+            }}
           >
             {({ TransitionProps, placement }) => (
               <Grow

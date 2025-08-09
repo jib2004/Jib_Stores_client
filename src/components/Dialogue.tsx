@@ -37,7 +37,7 @@ export default function AlertDialogSlide({openFunc,open,id,sellerId}:dialoguePro
         setIsloading(true)
         try {
             setIsloading(false)
-            const response = await deleteProduct({id,sellerId}).unwrap()
+            await deleteProduct({id,sellerId}).unwrap()
             navigate(`/seller/product/${sellerId}`)
         } catch (error) {
             console.log(error)
