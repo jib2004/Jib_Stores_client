@@ -18,16 +18,12 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isDisabled, setDisabled] = useState(false);
   const dispatch = useAppDispatch()
- 
-
 
   const { register, handleSubmit, formState: { errors } } = useForm<SignUpInfo>();
   const onSubmit: SubmitHandler<SignUpInfo> = async(data) =>{
     setDisabled(true)
     try {
     const res = await login(data).unwrap()
-    //  toast(res?.message)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          l.message)
-    
       dispatch(getUserDetails(res.data))
     setTimeout(() => {
       setDisabled(false)
@@ -35,7 +31,6 @@ const Login = () => {
     navigate('/')
     } catch (error) {
       toast.error(error.data.message)
-      // console.log(error)
     }finally{
       setDisabled(false)
     }

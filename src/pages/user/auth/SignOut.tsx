@@ -30,17 +30,18 @@ const SignUp = () => {
     if(isError){
       console.log(error);
     }
+    setDisabled(true)
     try {
     const res = await signUp(data).unwrap()
-    toast(res?.data.message)
-    setDisabled(true)
     setTimeout(() => {
       setDisabled(false)
     }, 4000);
     navigate('/')
     dispatch(getUserDetails(res.data))
     } catch (error) {
-      toast.error(error.data.message)
+      toast.error(error?.data.message)
+      setDisabled(false)
+      console.log(error)
     }
     
   };
