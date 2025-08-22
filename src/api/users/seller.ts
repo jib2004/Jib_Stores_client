@@ -49,9 +49,18 @@ export const sellerApi =  createApi({
                 method:'PUT',
                 body
             })
+        }),
+        getAllSellerOrders:builder.query({
+            query:(sellerId)=>`/orders/users/${sellerId}`
+        }),
+        updateOrderStatus:builder.mutation({
+            query:({orderNumber,sellerId,body})=>({
+                url:`/order/${orderNumber}/${sellerId}`,
+                method:'PUT',
+                body
+            })
         })
-
     })
 })
 
-export const {useGetProductsQuery,useAddProductMutation,useUploadImageMutation,useReviewProductQuery,useDeleteSellerProductMutation,useDeleteImagePublicIdMutation, useUpdateProductMutation} = sellerApi
+export const {useGetProductsQuery,useAddProductMutation,useUploadImageMutation,useReviewProductQuery,useDeleteSellerProductMutation,useDeleteImagePublicIdMutation, useUpdateProductMutation , useGetAllSellerOrdersQuery,useUpdateOrderStatusMutation} = sellerApi

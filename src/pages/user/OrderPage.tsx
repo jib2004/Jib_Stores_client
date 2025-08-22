@@ -24,7 +24,9 @@ const OrderPage = () => {
   if(status === 'rejected'){
     console.log(error)
   }
-  
+
+
+
 
   // const orderProduct = data?.data?.map((item)=>{
   //   return item.productDetails.map((product)=>{
@@ -54,7 +56,6 @@ const OrderPage = () => {
     //       } 
 
           if(data){
-            // getCart(orderProduct)
             setProducts(data?.data)
           }
         //    setTimeout(()=>{
@@ -75,17 +76,22 @@ const OrderPage = () => {
               <div className='flex flex-col  gap-3'>
                 <ul  className='flex justify-between'>
                   <li>Order Number: <span>{item.orderNumber}</span></li>
-
-                  <li>Status: <span className=' capitalize'><StatusTag status={item.orderStatus} /></span></li>
                 </ul>
 
                 <div className='flex flex-col gap-4 '>
                   {item?.productDetails.length > 0  && item?.productDetails.map((p)=>(
-                    <div className='flex gap-4 items-center rounded-lg shadow-md cursor-pointer p-3'>
+                    <div className='flex gap-4 items-center rounded-lg shadow-md cursor-pointer justify-between p-3'>
+                      <div className='flex gap-4 items-center'>
                        <figure className='size-[150px]  '>
                     <img className='size-full object-contain rounded-xl' src={`https://res.cloudinary.com/${import.meta.env.VITE_CLOUDINARY_KEY}/image/upload/${p?.productImg}`} alt="" />
                   </figure>
                   <figcaption className='max-w-[700px]'>{p?.productName}</figcaption>
+                  <p>X{p?.quantity}</p>
+                    </div>
+
+                    <div>
+                  <span className=' capitalize'><StatusTag status={p?.orderStatus} /></span>
+                  </div>
                     </div>
                   ))}
                  

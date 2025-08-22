@@ -25,7 +25,8 @@ const CartPage = () => {
     })
     const user = useAppSelector(state => state.user)
     const quantity =  useAppSelector(state => state.quantity)
-    
+
+
 
     const navigateToCheckout  = ():void =>{
       if(products.length === 0){

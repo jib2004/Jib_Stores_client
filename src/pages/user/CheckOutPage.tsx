@@ -6,7 +6,7 @@ import { useUserDetailsUpdateMutation } from '../../api/users/auth'
 import { setUserAddress } from '../../api/userSlice/userSlice'
 import { useParams } from 'react-router'
 import PaystackButton from '../../components/PaystackButton'
-import { Toaster } from 'sonner'
+import { Toaster, toast } from 'sonner'
 
 const CheckOutPage = () => {
   const [address,setAddress] = useState<string | undefined>('')
@@ -16,26 +16,27 @@ const CheckOutPage = () => {
   const dispatch = useAppDispatch()
   const [updateuserAddress] = useUserDetailsUpdateMutation()
   const {id} = useParams()
-  
+
 
   useMemo(()=>{
     setAddress(user.address)
   },[user.address])
+  
 
   const totalPrice:number = quantity.reduce((acc, item) => acc + (item.price ? item.price : item.basePrice), 0)
-  console.log(import.meta.env.PAYSTACK_SECRET_KEY)
-
 
   const handleAdressUpdate = async() =>{
     setLoading(true)
     try {
       await updateuserAddress({id,body:{address}}).unwrap()
       dispatch(setUserAddress({address}))
+      toast.success('Address updated successfully')
       setTimeout(()=>{
         setLoading(false)
       },5000)
       
     } catch (error) {
+      toast.error('Failed to update address')
       console.log(error)
       setTimeout(()=>{
         setLoading(false)
@@ -95,13 +96,29 @@ const CheckOutPage = () => {
           ))}
         </ul>
 
-        <PaystackButton id={id as string} email={user.email as string} amount={totalPrice}/>
+        <PaystackButton 
+        id={id as string} 
+        email={user.email as string} 
+        amount={totalPrice} 
+        address={address.trim()}
+        />
 
           </div>
 
           
       </motion.div>
-      <Toaster position='top-right' richColors closeButton />
+      <Toaster 
+      position='top-right' 
+      richColors 
+      // closeButton// was commented out beause it was causing an error showing the close button and the error toast
+      // toastOptions={{
+      //             className: 'bg-[#000] text-white',
+      //             style: {
+      //               fontSize: '16px',
+      //               color: '#fff',
+      //             },
+      //           }}
+      />
     </App>
   )
 }

@@ -8,12 +8,19 @@ const SellerMain = ({children}:appProps) => {
   const {pathname} = useLocation()
   const user = useAppSelector(state => state.user)
 
+  if(!user || user.isSeller === false) {
+    return <div className='flex flex-col gap-2 items-center justify-center h-screen text-[20px] font-semibold'>
+          You are not authorized to access this page 
+          <Link className=' underline' to='/'>Go to Home</Link>
+      </div>
+  }
+
 
   
   
   return (
-    <div className='flex h-screen bg-[#F7F7F7]'>
-    <div className='border basis-[20%] bg-white flex flex-col justify-between py-2'>
+    <div className='flex h-screen relative bg-[#F7F7F7] overflow-hidden'>
+    <div className='border basis-[20%] h-screen sticky top-0 left-0 bg-white flex flex-col justify-between py-2'>
         <figure className='flex justify-center'>
           <Link to='/dashboard'><img src={logo} alt="Jibs Store Logo" className=' size-[80px] object-cover ' /></Link> 
         </figure>
@@ -21,11 +28,11 @@ const SellerMain = ({children}:appProps) => {
         <ul className='flex flex-col gap-1'>
           <li><Link className={` flex items-center pl-4 rounded-xl py-2 w-[85%]  mx-auto font-semibold text-[18px] ${pathname === '/dashboard' && 'bg-black text-white'}`} to={'/dashboard'} >Overview</Link> </li>
           <li><Link className={` flex items-center pl-4 rounded-xl py-2 w-[85%]  mx-auto font-semibold text-[18px] ${pathname.includes('/seller/product')  && 'bg-black text-white'}`} to={`/seller/product/${user._id}`} >Product</Link> </li>
-          <li><Link className={` flex items-center pl-4 rounded-xl py-2 w-[85%]  mx-auto font-semibold text-[18px]`} to={'/'} >Customer</Link> </li>
-          <li><Link className={` flex items-center pl-4 rounded-xl py-2 w-[85%]  mx-auto font-semibold text-[18px]`} to={'/'} >Shipment</Link> </li>
-          <li><Link className={` flex items-center pl-4 rounded-xl py-2 w-[85%]  mx-auto font-semibold text-[18px]`} to={'/'} >Store Setting</Link> </li>
-          <li><Link className={` flex items-center pl-4 rounded-xl py-2 w-[85%]  mx-auto font-semibold text-[18px]`} to={'/'} >Feedback</Link> </li>
-          <li><Link className={` flex items-center pl-4 rounded-xl py-2 w-[85%]  mx-auto font-semibold text-[18px]`} to={'/'} >Help & Support</Link> </li>
+          {/* <li><Link className={` flex items-center pl-4 rounded-xl py-2 w-[85%]  mx-auto font-semibold text-[18px]`} to={'/'} >Customer</Link> </li> */}
+          {/* <li><Link className={` flex items-center pl-4 rounded-xl py-2 w-[85%]  mx-auto font-semibold text-[18px]`} to={'/'} >Shipment</Link> </li> */}
+          {/* <li><Link className={` flex items-center pl-4 rounded-xl py-2 w-[85%]  mx-auto font-semibold text-[18px]`} to={'/'} >Store Setting</Link> </li> */}
+          {/* <li><Link className={` flex items-center pl-4 rounded-xl py-2 w-[85%]  mx-auto font-semibold text-[18px]`} to={'/'} >Feedback</Link> </li> */}
+          {/* <li><Link className={` flex items-center pl-4 rounded-xl py-2 w-[85%]  mx-auto font-semibold text-[18px]`} to={'/'} >Help & Support</Link> </li> */}
           <li><Link className={` flex items-center pl-4 rounded-xl py-2 w-[85%]  mx-auto font-semibold text-[18px]`} to={'/'}>Switch to Buyer</Link> </li>
         </ul>
 
@@ -56,7 +63,7 @@ const SellerMain = ({children}:appProps) => {
         </div>
       </nav>
 
-      <section className='overflow-y-auto pt-4'>
+      <section className='overflow-y-auto py-4 px-5 h-screen'>
       {children}
       </section>
       </div>

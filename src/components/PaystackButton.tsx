@@ -2,7 +2,7 @@ import React from 'react'
 import { usePaystackPayment } from 'react-paystack';
 import {motion} from 'motion/react'
 import { useCreateOrderMutation } from '../api/users/buyer';
-import { toast } from 'sonner';
+import { toast} from 'sonner';
 import { useAppSelector,useAppDispatch } from '../hooks/hooks';
 import { useNavigate } from 'react-router';
 import { resetQuantity } from '../api/quatitySlice/quantitySlice';
@@ -41,12 +41,16 @@ const PaystackButton = ({id,email,amount,address}:paystackProp) => {
             navigate(`/user/order/${id}`)
             dispatch(resetQuantity())
             dispatch(clearCart())
-        }else{
-            toast.error(reference.message)
+            toast.success('Order created successfully')
         }
+
+        // else{
+        //     toast.error(reference.message)
+        // }
     } catch (error) {
-        toast.error('Failed')
-        console.log(error)
+        toast.error('Failed' )
+        console.error('Error creating order:', error);
+        
     }
   };
 
@@ -81,6 +85,7 @@ const PaystackButton = ({id,email,amount,address}:paystackProp) => {
                 initializePayment({onSuccess, onClose})
               }}
               >Pay</motion.button>
+              
               
         </div>
   )

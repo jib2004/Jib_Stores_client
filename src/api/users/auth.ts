@@ -32,6 +32,10 @@ export const userAuthApi = createApi({
                 body
             })
         }),
+        getUserInformation: builder.query({
+            query: (id) => `/user-info/${id}`,
+                
+        }),
         sendOTP:builder.mutation<SignUpInfo,Partial<SignUpInfo>>({
             query:(body)=>({
                 url:'/send-otp',
@@ -91,4 +95,4 @@ export const userAuthApi = createApi({
     })
 })
 
-export const {useSignUpMutation,useGoogleAuthMutation,useLoginMutation,useSendOTPMutation,useVerifyOTPPasswordMutation,useVerifyOTPEmailMutation,useChangePasswordMutation,useLogoutMutation,useUserDetailsUpdateMutation,useUserCreatePlanMutation,useUserVerificationPaymentMutation} = userAuthApi
+export const {useSignUpMutation,useGoogleAuthMutation,useLoginMutation,useGetUserInformationQuery,useSendOTPMutation,useVerifyOTPPasswordMutation,useVerifyOTPEmailMutation,useChangePasswordMutation,useLogoutMutation,useUserDetailsUpdateMutation,useUserCreatePlanMutation,useUserVerificationPaymentMutation} = userAuthApi

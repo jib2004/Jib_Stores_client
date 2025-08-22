@@ -8,6 +8,7 @@ import { useState,useEffect } from 'react'
 import Loading from '../../../components/Loading'
 import { userDetails } from '../../../types'
 
+
 const SellerPlan = () => {
     const navigate =  useNavigate()
     const dispatch = useAppDispatch()
@@ -15,12 +16,18 @@ const SellerPlan = () => {
     const user = useAppSelector(state=> state.user)
     const [createPlan] = useUserCreatePlanMutation()
     const [loading, setLoading] = useState(true)
+    const [planLoading, setPlanLoading] = useState<boolean>(false)
+
+
     
     const getStarted = async() =>{
         try {
             const res = await update({id:user._id,body:{plan: 'free',isSeller:true} as userDetails}).unwrap()
             dispatch(getUserDetails(res.data))
             navigate('/dashboard')
+            setTimeout(() => {
+                setPlanLoading(false)
+            }, 5000);
         } catch (error) {
             console.log(error)
         }
@@ -32,6 +39,7 @@ const SellerPlan = () => {
     //    const title = e.target.parentElement.previousSibling.previousSibling.firstElementChild.textContent.toLowerCase()
        const price:number = amt 
        let plan:string|undefined = undefined 
+        setPlanLoading(true)
        
        if(price == 20000){
          plan = 'PLN_2xyrlaaadpwby81'
@@ -46,14 +54,14 @@ const SellerPlan = () => {
             plan:plan,
             amount:price
             }).unwrap()
-
-            console.log(response.user)
             dispatch(getUserDetails(response.user))
             if(response.data.status){
                 window.open(response.data.data.authorization_url,"_blank")
                 navigate('/subscription-confirmation')
             }
-            
+            setTimeout(() => {
+                setPlanLoading(false)
+            }, 5000);
            
        } catch (error) {
             console.log(error)
@@ -77,8 +85,9 @@ const SellerPlan = () => {
             <Plans 
             title='Free' 
             price={0} 
-            btnText='Get Started'
+            btnText={planLoading ? "Please Wait...":'Get Started'}
             planFunc={getStarted}
+            isloading={planLoading}
             offer={[
             'Limited product listings (up to 5 products)',
             'Basic analytics (views and clicks)',
@@ -87,10 +96,11 @@ const SellerPlan = () => {
             ]}/>
             
             <Plans 
-            title='Basic' 
+            title={planLoading ? "Please Wait...":'Basic'}
             price={10000}
             btnText='Buy Now' 
             planFunc={() => subscribe(10000)}
+            isloading={planLoading}
             offer={[
                 'Increased product listings (up to 20 products)',
                 'Enhanced analytics (sales tracking, customer demographics)',
@@ -100,10 +110,11 @@ const SellerPlan = () => {
             ]}/>
 
             <Plans 
-            title='Standard' 
+            title={planLoading ? "Please Wait..." : 'Standard'} 
             price={20000}
             btnText='Buy Now'
             planFunc={() => subscribe(20000)} 
+            isloading={planLoading}
             offer={[
                 'Unlimited product listings',
                 'Advanced analytics (detailed reports, customer behavior insights)',

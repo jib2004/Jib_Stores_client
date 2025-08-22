@@ -5,12 +5,13 @@ type planCard ={
     price:number,
     offer:string[],
     planFunc?:()=> any,
-    btnText:string
+    btnText:string,
+    isloading?:boolean
 }
 
 
 
-const Plans = ({title,price,offer,btnText,planFunc}:planCard) => {
+const Plans = ({title,price,offer,btnText,planFunc,isloading}:planCard) => {
 
   return (
     <div className='border w-[350px] min-h-[520px] rounded-2xl flex flex-col justify-between px-4 py-3 bg-black text-white shadow-xl'>
@@ -27,7 +28,7 @@ const Plans = ({title,price,offer,btnText,planFunc}:planCard) => {
             </ul>
         </div>
         <div className='flex justify-center'>
-            <button onClick={planFunc} className='border w-[90%] h-[55px] bg-[#fff] text-[black] font-medium active:bg-[#fff]  hover:bg-[#ece9e9] duration-150'>{btnText}</button>
+            <button disabled={isloading} onClick={planFunc} className='border w-[90%] h-[55px] bg-[#fff] text-[black] font-medium active:bg-[#fff]  hover:bg-[#ece9e9] duration-150'>{btnText}</button>
         </div>
     </div>
   )

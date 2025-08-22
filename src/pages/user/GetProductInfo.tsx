@@ -123,7 +123,7 @@ const GetProductInfo = () => {
                         </div>
                         <div className="flex flex-col gap-4">
                         <h1 className="text-4xl"> {data.data?.title}</h1>
-                        <div className="flex gap-2 my-2"><span className="text-2xl font-semibold">Price :</span> <span className={data.data?.isDisCount ?'block text-2xl font-semibold' : 'hidden'}>	&#8358;{data.data?.discountedPrice.toLocaleString()}</span> <span className={`${data.data?.isDisCount ? 'text-gray-500 line-through text-2xl font-semibold' : 'black font-semibold text-2xl'}`}>	&#8358;{data.data?.price.toLocaleString()}</span> {data.data?.isDisCount && <p className=" w-[40px] font-semibold rounded-lg text-white bg-red-500 text-xs grid place-content-center ">{Math.floor((data.data?.price - data.data?.discountedPrice ) / data.data?.price * 100 )}%</p>}</div>
+                        <div className="flex gap-2 my-2"><span className="text-2xl font-semibold">Price :</span> <span className={data.data?.isDisCount ?'block text-2xl font-semibold' : 'hidden'}>	&#8358;{data.data?.discountedPrice?.toLocaleString()}</span> <span className={`${data.data?.isDisCount ? 'text-gray-500 line-through text-2xl font-semibold' : 'black font-semibold text-2xl'}`}>	&#8358;{data.data?.price.toLocaleString()}</span> {data.data?.isDisCount && <p className=" w-[40px] font-semibold rounded-lg text-white bg-red-500 text-xs grid place-content-center ">{Math.floor((data.data?.price - data.data?.discountedPrice ) / data.data?.price * 100 )}%</p>}</div>
                         
                         <div className='flex gap-1'>
                             {/* <HalfRating rating={rate}/> */}

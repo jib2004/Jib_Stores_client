@@ -10,7 +10,13 @@ const initialState:{
     sellerId:string
     email:string,
     productImg:string
+    orderStatus:"processing" | "in-transit" | "delivered" | "canceled",
+    
 }[] = []
+
+
+
+
 
 export const quantySlice = createSlice({
     name:'quantity',
@@ -19,7 +25,12 @@ export const quantySlice = createSlice({
         setProduct: (state,action)=>{
             const existingProduct = state.find(item => item.id === action.payload.id);
             if (!existingProduct) {
-                state.push(action.payload);
+                state.push({
+            ...action.payload,
+            orderStatus: 'processing'
+        });
+                
+
             }
            
         },        

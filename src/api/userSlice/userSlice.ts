@@ -72,7 +72,7 @@ export const userSlice = createSlice({
                 ...state,
                 cart:[]
             }
-        }
+        },
         
     }
     
@@ -87,6 +87,7 @@ export const {
     addedProductToCart,
     removeFromCart,
     setUserAddress,
-    clearCart
+    clearCart,
+    
 } = userSlice.actions
 export default userSlice.reducer

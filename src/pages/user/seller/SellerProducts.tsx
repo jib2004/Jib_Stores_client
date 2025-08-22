@@ -64,6 +64,13 @@ if (error && 'status' in error && error.status === 401) {
           </Suspense>
           </div>
         </div>
+
+        {userProducts.length === 0 && (
+          <div className="flex justify-center items-center h-[300px]">
+            <h1 className="text-[20px] font-semibold">You have no products yet</h1>
+          </div>
+        )}
+
         </div>
 
 

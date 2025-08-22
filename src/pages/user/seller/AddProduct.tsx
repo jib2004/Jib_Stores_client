@@ -49,8 +49,6 @@ const AddProduct = () => {
     //     }
     // }
 
-    
-
     const handleFileChange = async(event) => {
         const files = event.target.files;
         const data = new FormData()
@@ -61,6 +59,7 @@ const AddProduct = () => {
         
         try {
             const res = await Upload(data).unwrap()
+            console.log('Request payload:', [...data.entries()]);
             setImage((prev)=>[...prev, ...res.data])
             setImageLoading(false)
         } catch (error) {

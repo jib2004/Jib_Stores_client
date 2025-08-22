@@ -1,19 +1,23 @@
 import {useState} from 'react'
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Link,useNavigate } from 'react-router';
-import { FcGoogle } from "react-icons/fc";
+// import { FcGoogle } from "react-icons/fc";
 import { SignUpInfo } from '../../../types';
 import { FaEyeSlash,FaEye} from "react-icons/fa";
 import { toast,Toaster } from 'sonner';
-import { GoogleAuthProvider,signInWithPopup } from "firebase/auth";
-import { auth } from '../../../config/firebaseConfig';
-import { useLoginMutation,useGoogleAuthMutation } from '../../../api/users/auth';
+// import { GoogleAuthProvider,signInWithPopup } from "firebase/auth";
+// import { auth } from '../../../config/firebaseConfig';
+import { 
+  useLoginMutation,
+  // useGoogleAuthMutation 
+} 
+  from '../../../api/users/auth';
 import { useAppDispatch } from '../../../hooks/hooks';
 import { getUserDetails } from '../../../api/userSlice/userSlice';
 
 const Login = () => {
   const [login] = useLoginMutation() 
-  const [googleAuth] = useGoogleAuthMutation()
+  // const [googleAuth] = useGoogleAuthMutation()
   const navigate = useNavigate()
   const [showPassword, setShowPassword] = useState(false);
   const [isDisabled, setDisabled] = useState(false);
@@ -38,33 +42,33 @@ const Login = () => {
   };
 
 
-  const handleGoogle = async() =>{
-    setDisabled(true)
-    try {
-      const provider = await new GoogleAuthProvider();
-    const result = await  signInWithPopup(auth, provider);
-    const res = await googleAuth({
-      name:result.user.displayName,
-      email:result.user.email,
-      // profilePicture: result.user.photoURL
-    }).unwrap()
-    toast(res?.data.message)
-    dispatch(getUserDetails(res.data))
+  // const handleGoogle = async() =>{
+  //   setDisabled(true)
+  //   try {
+  //     const provider = await new GoogleAuthProvider();
+  //   const result = await  signInWithPopup(auth, provider);
+  //   const res = await googleAuth({
+  //     name:result.user.displayName,
+  //     email:result.user.email,
+  //     // profilePicture: result.user.photoURL
+  //   }).unwrap()
+  //   toast(res?.data.message)
+  //   dispatch(getUserDetails(res.data))
   
-  setTimeout(() => {
-    setDisabled(false)
-  }, 4000);
-  navigate('/')
-    } catch (error) {
-      toast.error(error)
-      console.log(error.data.message)
+  // setTimeout(() => {
+  //   setDisabled(false)
+  // }, 4000);
+  // navigate('/')
+  //   } catch (error) {
+  //     toast.error(error)
+  //     console.log(error.data.message)
       
-    setDisabled(false)
-    }finally{
-      setDisabled(false)
-    }
+  //   setDisabled(false)
+  //   }finally{
+  //     setDisabled(false)
+  //   }
     
-  }
+  // }
   return (
     <div className='bg-[#F3F3F3] h-screen flex items-center justify-center'>
        <div className=' basis-1/2 p-4 bg-white flex flex-col gap-6'>
@@ -102,12 +106,12 @@ const Login = () => {
 
 
 
-      <div className='flex  items-center gap-3'> <div className='border h-[1px] basis-[50%]'></div> <span >or</span>  <div className='border h-[1px] basis-[50%]'></div></div>
+      {/* <div className='flex  items-center gap-3'> <div className='border h-[1px] basis-[50%]'></div> <span >or</span>  <div className='border h-[1px] basis-[50%]'></div></div> */}
 
 
-      <div>
+      {/* <div>
         <button onClick={handleGoogle} disabled={isDisabled} className='border border-black flex items-center justify-center gap-2 hover:bg-[#eaeaea] active:bg-transparent duration-300 disabled:bg-gray-600 text-[#676666] disabled:text-white' > <FcGoogle className='size-8'/> <span className=' text-[0.875rem]'>Sign in with Google</span> {isDisabled && <div className='loader inline-block'></div>} </button>
-      </div>
+      </div> */}
       </div>
 
           <Toaster position="top-right"/>
