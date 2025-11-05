@@ -19,7 +19,7 @@ export const Home = () => {
 
 
   return (
-    <div className={` overflow-x-hidden  ${loading && 'overflow-hidden'}`}>
+    <div className={`bg-[#EAEDED] min-h-screen text-gray-900 overflow-x-hidden pb-10 ${loading ? 'overflow-hidden' : ''}`}>
        <Loading loading={loading}/>
     <App>
      

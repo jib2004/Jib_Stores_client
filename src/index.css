@@ -10,6 +10,7 @@ body{
     box-sizing: border-box;
     font-family: "Inter", serif;
     overflow-x: hidden;
+    scroll-behavior: smooth;
 }
 
 
@@ -58,19 +59,30 @@ body{
 }
 
 h1{
-    @apply font-bold text-[#212121] text-[2.5rem];
+    font-weight: bold;
+    color: #212121;
+    font-size: 2.5rem;
 }
 
 label{
-    @apply text-[#676666];
+    color: #676666;
 }
 
 input[type="text"],input[type="email"],input[type="password"]{
-    @apply w-full h-[55px] p-2 border border-[#676666] rounded-[10px] text-[#212121];
+    width: 100%;
+    height: 55px;
+    padding: 8px;
+    border: 1px solid #676666;
+    border-radius: 10px;
+    color: #212121;
 }
 
 button{
-    @apply w-full h-[55px] p-2 rounded-[10px] text-[1.125rem];
+    width: 100%;
+    height: 55px;
+    padding: 8px;
+    border-radius: 10px;
+    font-size: 1.125rem;
 }
 
 .loadingContainer{
@@ -106,5 +118,4 @@ button{
     display: none;
 
   }
-  
 }
