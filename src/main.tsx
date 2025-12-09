@@ -26,6 +26,7 @@ import Wishlist from './pages/user/Wishlist.tsx';
 import CartPage from './pages/user/CartPage.tsx';
 import CheckOutPage from './pages/user/CheckOutPage.tsx';
 import OrderPage from './pages/user/OrderPage.tsx';
+import SearchPage from './pages/user/SearchPage.tsx';
 
 
 
@@ -102,6 +103,17 @@ const router = createBrowserRouter([
       path: '/subscription-confirmation',
       element:<ConfirmSubscription/>
     },
+    {
+      path: '/search/:query',
+      element:<SearchPage/>
+    }
+    ,
+    {
+      path: '*',
+      element: <div className='flex justify-center items-center h-screen'>
+        <h1 className='text-3xl font-bold'>404 - Page Not Found</h1>
+      </div>
+    }
 ])
 
 createRoot(document.getElementById('root')!).render(

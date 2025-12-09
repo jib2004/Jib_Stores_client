@@ -6,7 +6,7 @@ import { SignUpInfo } from '../../types'
 export const userAuthApi = createApi({
     reducerPath: 'userAuthApi',
     baseQuery: fetchBaseQuery({
-        baseUrl:"https://jib-stores-backend.vercel.app/auth/",
+        baseUrl:process.env.NODE_ENV === 'development'? 'http://localhost:5000/auth' :  "https://jib-stores-backend.vercel.app/auth/",
         credentials:'include'// Add so your cookies and credentials can be stored
     }),
     tagTypes: ['User'],

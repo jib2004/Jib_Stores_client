@@ -4,7 +4,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 export const sellerApi =  createApi({
     reducerPath:'sellerApi',
     baseQuery: fetchBaseQuery({
-        baseUrl:"https://jib-stores-backend.vercel.app/seller/",
+        baseUrl:process.env.NODE_ENV === 'development'? 'http://localhost:5000/seller' :"https://jib-stores-backend.vercel.app/seller/",
         credentials:'include'
     }),
     tagTypes:['Seller'],

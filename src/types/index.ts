@@ -36,6 +36,7 @@ export interface productDetails{
     amountSold:number,
     isSold:boolean,
     keywords:string[]
+    sizes?: string[]
 
 }
 

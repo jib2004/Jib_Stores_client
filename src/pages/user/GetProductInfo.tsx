@@ -24,6 +24,7 @@ const GetProductInfo = () => {
     const [isWishList, setIsWishList] = useState(false);
     const [addToCart] = useUseAddToCartMutationMutation()
     const navigate = useNavigate()
+    // const [sizes,setSizes] = useState<string>('')
 
     if(!user._id ){
         navigate('/login') 
@@ -137,6 +138,17 @@ const GetProductInfo = () => {
                             {/* <HalfRating rating={rate}/> */}
                             <p className='text-neutral-600'>{data.data?.rating?.count} reviews</p>
                             <p className='text-neutral-600'><span className='text-neutral-700'>Total Reviews:</span> {data.data?.rating?.rate.length}</p>
+                        </div>
+
+                        <div>
+                            <h2 className="font-semibold text-xl mb-1">Available Sizes:</h2>
+                            <div className='flex gap-3'>
+                                {
+                                    data.data?.sizes && data.data?.sizes.length > 0 && data.data?.sizes.map((size:string,index:number) =>(
+                                        <span key={index} className='px-3 py-1 cursor-pointer font-semibold border border-gray-300 rounded-md text-neutral-800'>{size}</span>
+                                    ))
+                                }
+                            </div>
                         </div>
                         
         

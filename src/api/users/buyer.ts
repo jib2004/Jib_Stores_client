@@ -4,7 +4,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 export const buyerApi = createApi({
     reducerPath:'buyerApi',
      baseQuery: fetchBaseQuery({
-            baseUrl:"https://jib-stores-backend.vercel.app/buyer/",
+            baseUrl:process.env.NODE_ENV === 'development'? 'http://localhost:5000/buyer' :"https://jib-stores-backend.vercel.app/buyer/",
             credentials:'include'
         }),
         tagTypes:['Buyer'],
@@ -44,6 +44,9 @@ export const buyerApi = createApi({
             }),
             getUserOrders:builder.query({
                 query:(id)=> `/order/${id}`
+            }),
+            getSearchResults:builder.query({
+                query:(query) => `/search/${query}`
             })
         })
 })
@@ -57,5 +60,6 @@ export const {
     useUseAddToCartMutationMutation,
     useGetCartByIdQuery,
     useCreateOrderMutation,
-    useGetUserOrdersQuery
+    useGetUserOrdersQuery,
+    useGetSearchResultsQuery
 } = buyerApi

@@ -11,7 +11,7 @@ const AdandCategories = () => {
     { name: "Sports & Outdoor", icon: "⚽" },
     { name: "Baby's & Toys", icon: "🧸" },
     { name: "Groceries", icon: "🛒" },
-    { name: "Health & Beauty", icon: "💄" }
+    { name: "Health & Beauty", icon: "💄" },
   ]
 
   return (
@@ -26,7 +26,7 @@ const AdandCategories = () => {
                 {categories.map((category, index) => (
                   <li key={index}>
                     <Link 
-                      to="/" 
+                      to= {`/search/${category.name}`} 
                       className='flex items-center gap-3 px-4 py-2 rounded-xl text-neutral-700 hover:bg-primary-50 hover:text-primary-700 transition-all duration-200 group'
                     >
                       <span className='text-lg group-hover:scale-110 transition-transform duration-200'>

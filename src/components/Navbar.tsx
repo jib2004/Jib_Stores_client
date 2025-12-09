@@ -1,13 +1,23 @@
 import logo from '../assets/img/a_design_text_logo_for_jibstores_black-removebg-preview.png'
-import { Link, useLocation } from 'react-router'
+import { Link, useLocation,useNavigate } from 'react-router'
 import Cart from '../components/Cart'
 import AccountMenu from './Avatar'
 import NotSignedIn from './NotSignedIn'
 import { useAppSelector } from '../hooks/hooks'
+import { useState } from 'react'
+// import { useNavigate } from 'react-router'
 
 const Navbar = () => {
   const user = useAppSelector(state => state.user)
   const { pathname } = useLocation()
+  const [search,setSearch] = useState<string>('')
+  const navigate = useNavigate()
+
+ const handleSearch = () =>{
+    if(search){
+      navigate(`/search/${search}`)
+    }
+ }
 
   return (
     <nav className='sticky top-0 z-50 w-full border-b border-gray-200/50 bg-white/80 backdrop-blur-xl shadow-lg'>
@@ -41,13 +51,15 @@ const Navbar = () => {
           </figure>
 
           {/* Search Bar - Hidden on mobile, shown on larger screens */}
-          <div className='hidden md:flex flex-1 max-w-2xl mx-8'>
+          <div className='hidden md:flex flex-1 max-w-2xl mx-8 gap-3'>
             <div className='relative w-full group'>
               <div className='absolute inset-0 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20 rounded-2xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-300'></div>
               <div className='relative'>
                 <input
                   type='text'
                   placeholder='Search for amazing products...'
+                  value={search}
+                  onChange={(e)=>setSearch(e.target.value.trim())}
                   className='w-full h-12 pl-12 pr-6 bg-gray-50/80 backdrop-blur-sm border border-gray-200/50 rounded-2xl text-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 focus:bg-white/90 transition-all duration-300 shadow-sm hover:shadow-md'
                 />
                 <div className='absolute inset-y-0 right-4 pl-4 flex items-center pointer-events-none'>
@@ -55,6 +67,9 @@ const Navbar = () => {
                     <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z' />
                   </svg>
                 </div>
+
+               
+
                 {/* <button className='absolute  inset-y-0 right-0 pr-3 flex items-center'>
                   <div className='w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl flex items-center justify-center shadow-sm hover:shadow-md transition-all duration-200 hover:scale-105'>
                     <svg className='h-4 w-4 text-white' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
@@ -64,6 +79,11 @@ const Navbar = () => {
                 </button> */}
               </div>
             </div>
+             <button 
+             onClick={handleSearch}
+             className='border cursor-pointer basis-1/6 bg-purple-600 font-semibold text-white hover:bg-purple-400 active:bg-purple-800 duration-300'>
+                  Search
+              </button>
           </div>
 
           {/* Right side actions */}
