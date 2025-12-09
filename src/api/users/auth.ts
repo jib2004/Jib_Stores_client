@@ -92,7 +92,10 @@ export const userAuthApi = createApi({
             body
         })
     }),
-    })
+    cookieCheck:builder.query({
+        query:()=> '/cookie-check'
+    })    
+})
 })
 
-export const {useSignUpMutation,useGoogleAuthMutation,useLoginMutation,useGetUserInformationQuery,useSendOTPMutation,useVerifyOTPPasswordMutation,useVerifyOTPEmailMutation,useChangePasswordMutation,useLogoutMutation,useUserDetailsUpdateMutation,useUserCreatePlanMutation,useUserVerificationPaymentMutation} = userAuthApi
+export const {useSignUpMutation,useGoogleAuthMutation,useLoginMutation,useGetUserInformationQuery,useSendOTPMutation,useVerifyOTPPasswordMutation,useVerifyOTPEmailMutation,useChangePasswordMutation,useLogoutMutation,useUserDetailsUpdateMutation,useUserCreatePlanMutation,useUserVerificationPaymentMutation,useCookieCheckQuery} = userAuthApi
