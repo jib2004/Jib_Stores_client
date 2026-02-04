@@ -6,7 +6,7 @@ import { toast,Toaster } from 'sonner';
 import { useSendOTPMutation } from '../../../api/users/auth';
 
 const ForgotPassword = () => {
-  const [sendOtp,{isLoading}] = useSendOTPMutation() 
+  const [sendOtp] = useSendOTPMutation() 
   const navigate = useNavigate()
   const [isDisabled, setDisabled] = useState(false);
   
@@ -29,7 +29,7 @@ const ForgotPassword = () => {
   };
 
   return (
-    <div className='min-h-screen bg-gradient-to-br from-primary-50 via-white to-secondary-50 flex items-center justify-center p-4'>
+    <div className='min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 flex items-center justify-center p-4'>
       <div className='w-full max-w-md'>
         {/* Header */}
         <div className='text-center mb-8'>
@@ -51,15 +51,11 @@ const ForgotPassword = () => {
                   Email Address
                 </label>
                 <div className='relative'>
-                  <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
-                    <svg className='h-5 w-5 text-neutral-400' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
-                      <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207' />
-                    </svg>
-                  </div>
+                  
                   <input 
                     type="email"  
                     id='email'
-                    className='form-input pl-10'
+                    className='pl-10'
                     placeholder='Enter your email address'
                     {...register('email',{
                       required:"Please enter your email",
@@ -96,7 +92,7 @@ const ForgotPassword = () => {
             <button 
               disabled={isDisabled} 
               type='submit' 
-              className='btn-primary w-full flex items-center justify-center gap-2'
+              className='bg-black text-white disabled:bg-gray-600 w-full flex items-center justify-center gap-2'
             >
               {isDisabled ? (
                 <>
@@ -105,7 +101,7 @@ const ForgotPassword = () => {
                 </>
               ) : (
                 <>
-                  Send Reset Instructions
+                  Send OTP
                   <svg className='w-4 h-4' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
                     <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M12 19l9 2-9-18-9 18 9-2zm0 0v-8' />
                   </svg>

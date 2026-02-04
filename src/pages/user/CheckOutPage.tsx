@@ -5,7 +5,7 @@ import { useAppSelector,useAppDispatch } from '../../hooks/hooks'
 import { useUserDetailsUpdateMutation } from '../../api/users/auth'
 import { setUserAddress } from '../../api/userSlice/userSlice'
 import { useParams } from 'react-router'
-import PaystackButton from '../../components/PaystackButton'
+import PaystackButton from '../../components/PaystackButton' // I will most likely remove react-paystack and move the code to the backend
 import { Toaster, toast } from 'sonner'
 
 const CheckOutPage = () => {
@@ -27,7 +27,7 @@ const CheckOutPage = () => {
 
   const handleAdressUpdate = async() =>{
     setLoading(true)
-    try {
+    try { 
       await updateuserAddress({id,body:{address}}).unwrap()
       dispatch(setUserAddress({address}))
       toast.success('Address updated successfully')

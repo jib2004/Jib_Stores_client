@@ -5,6 +5,7 @@ A modern, full-featured e-commerce platform built with React, TypeScript, and Re
 ## 🚀 Overview
 
 Jib Stores is a dual-sided marketplace that allows:
+
 - **Buyers** to browse, search, purchase products, manage wishlists and shopping carts
 - **Sellers** to create accounts, list products, manage inventory, and track orders
 - **Multi-role authentication** with Google OAuth integration
@@ -15,31 +16,37 @@ Jib Stores is a dual-sided marketplace that allows:
 ## 🛠 Tech Stack
 
 ### Core Technologies
+
 - **React 18.3.1** - UI framework
 - **TypeScript** - Type safety and better development experience
 - **Vite** - Fast build tool and development server
 - **Tailwind CSS** - Utility-first CSS framework
 
 ### State Management
+
 - **Redux Toolkit** - State management with RTK Query for API calls
 - **Redux Persist** - Persistent state across browser sessions
 
 ### UI Components & Animation
+
 - **Material-UI (MUI)** - Component library with icons
 - **GSAP** - Advanced animations
 - **Splide.js** - Carousel/slider components
 - **React Icons** - Icon library
 
 ### Authentication & Backend Integration
+
 - **Firebase Auth** - Authentication service
 - **Axios** - HTTP client for API requests
 - **Socket.IO Client** - Real-time communication
 
 ### Payment & Media
+
 - **Paystack** - Payment processing for Nigerian market
 - **Cloudinary** - Image upload and management
 
 ### Form Handling & Notifications
+
 - **React Hook Form** - Form validation and handling
 - **Sonner** - Toast notifications
 
@@ -81,12 +88,14 @@ src/
 The platform supports multiple authentication methods:
 
 ### User Registration & Login
+
 - Email/password authentication
 - Google OAuth integration
 - Email verification with OTP
 - Password reset functionality
 
 ### User Roles
+
 - **Regular Users**: Browse and purchase products
 - **Sellers**: Additional permissions to list and manage products
 - **Admin**: Platform administration (structure exists)
@@ -94,6 +103,7 @@ The platform supports multiple authentication methods:
 ## 🛒 E-commerce Features
 
 ### For Buyers
+
 - **Product Browsing**: View all products with filtering and search
 - **Product Details**: Detailed product pages with images and descriptions
 - **Wishlist Management**: Save products for later
@@ -102,6 +112,7 @@ The platform supports multiple authentication methods:
 - **Order Tracking**: View order history and status
 
 ### For Sellers
+
 - **Seller Registration**: Upgrade to seller account with subscription plans
 - **Product Management**: Add, edit, delete products
 - **Image Upload**: Multiple product images via Cloudinary
@@ -128,24 +139,27 @@ The platform supports multiple authentication methods:
 ## 🔧 Development Setup
 
 ### Prerequisites
+
 - Node.js (v16 or higher)
 - npm or yarn package manager
 
 ### Installation
 
 1. **Clone the repository**
+
 ```bash
 git clone <repository-url>
 cd client
 ```
 
 2. **Install dependencies**
+
 ```bash
 npm install
 ```
 
 3. **Environment Setup**
-Create a `.env` file in the root directory:
+   Create a `.env` file in the root directory:
 
 ```env
 # Firebase Configuration
@@ -163,6 +177,7 @@ VITE_CLOUDINARY_UPLOAD_PRESET=your_upload_preset
 ```
 
 4. **Start development server**
+
 ```bash
 npm run dev
 ```
@@ -170,11 +185,13 @@ npm run dev
 The application will be available at `http://localhost:3000`
 
 ### Build for Production
+
 ```bash
 npm run build
 ```
 
 ### Linting
+
 ```bash
 npm run lint
 ```
@@ -192,6 +209,7 @@ All API calls are managed through RTK Query with automatic caching and state man
 ## 🔄 State Management
 
 The application uses Redux Toolkit with the following slices:
+
 - **User Slice**: User authentication and profile data
 - **Quantity Slice**: Shopping cart quantity management
 - **API Slices**: Cached API responses for auth, seller, and buyer operations
@@ -201,6 +219,7 @@ State persistence is handled by Redux Persist, maintaining user sessions across 
 ## 📱 Responsive Design
 
 The application is fully responsive with:
+
 - Mobile-first design approach
 - Tailwind CSS for consistent styling
 - Adaptive layouts for different screen sizes
@@ -209,6 +228,7 @@ The application is fully responsive with:
 ## 🚀 Deployment
 
 The application is configured for deployment with:
+
 - Vite build optimization
 - Code splitting for better performance
 - Environment variable support
@@ -221,3 +241,4 @@ This appears to be a commercial e-commerce platform. For contribution guidelines
 ## 📄 License
 
 Please refer to the project maintainers for licensing information.
+
