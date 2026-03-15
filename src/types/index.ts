@@ -84,3 +84,10 @@ export interface userDetails{
 }
 
 
+export interface BidProp{
+    name?:string
+    description?:string
+    currentBid?:number
+    yourBid?:number
+    img?:string
+}

@@ -66,6 +66,11 @@ export default function AccountMenu({ name, src }: avatarProp) {
     handleClose()
   }
 
+   const bidPage = () => {
+    navigate(`/user/bid`)
+    handleClose()
+  }
+
   const goHome = () => {
     navigate('/')
     handleClose()
@@ -197,6 +202,19 @@ export default function AccountMenu({ name, src }: avatarProp) {
               <div className="text-left">
                 <p className="font-medium">{user?.isSeller ? 'Dashboard' : 'Become a Seller'}</p>
                 <p className="text-xs text-gray-500">{user?.isSeller ? 'Manage your store' : 'Start selling today'}</p>
+              </div>
+            </button>
+
+             <button
+              onClick={bidPage}
+              className="flex items-center w-full px-6 py-3 text-sm text-gray-700 hover:bg-gradient-to-r hover:from-green-50 hover:to-emerald-50 hover:text-gray-900 transition-all duration-200 group"
+            >
+              <div className="w-10 h-10 bg-gradient-to-br from-green-100 to-emerald-200 group-hover:from-green-200 group-hover:to-emerald-300 rounded-xl flex items-center justify-center mr-4 transition-all duration-200">
+                <span className="text-lg">🔨</span>
+              </div>
+              <div className="text-left">
+                <p className="font-medium">Bid</p>
+                <p className="text-xs text-gray-500">Place bids on products</p>
               </div>
             </button>
 

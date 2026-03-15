@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { SignUpInfo } from '../../types'
 
-
+ 
 
 export const userAuthApi = createApi({
     reducerPath: 'userAuthApi',
