@@ -1,22 +1,22 @@
-import { motion } from 'framer-motion';
+import { motion, Variants,Easing } from 'motion/react';
 
-const shimmerVariants = {
+const shimmerVariants: Variants = {
   animate: {
     backgroundPosition: ["-200% 0%", "200% 0%"],
-    transition: {
-      duration: 1.5,
-      repeat: Infinity,
-      ease: "linear",
-    },
   },
 };
 
+const shimmerTransition = {
+  duration: 1.5,
+  repeat: Infinity,
+  ease: "linear" as Easing,
+};
 const ProductCardSkeleton = () => {
   return (
     <motion.div
       initial={{ opacity: 0.7 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 0.8, yoyo: Infinity }}
+      transition={{ duration: 0.8, repeat: Infinity, repeatType: "reverse" }}
       style={{
         width: 270,
         padding: 20,
@@ -32,6 +32,7 @@ const ProductCardSkeleton = () => {
       <motion.div
         variants={shimmerVariants}
         animate="animate"
+        transition={shimmerTransition}
         style={{
           height: 180,
           borderRadius: 12,
@@ -43,6 +44,7 @@ const ProductCardSkeleton = () => {
       <motion.div
         variants={shimmerVariants}
         animate="animate"
+        transition={shimmerTransition}
         style={{
           height: 20,
           width: "70%",
@@ -56,6 +58,7 @@ const ProductCardSkeleton = () => {
       <motion.div
         variants={shimmerVariants}
         animate="animate"
+        transition={shimmerTransition}
         style={{
           height: 20,
           width: "40%",
@@ -69,6 +72,7 @@ const ProductCardSkeleton = () => {
       <motion.div
         variants={shimmerVariants}
         animate="animate"
+        transition={shimmerTransition}
         style={{
           height: 40,
           width: "100%",
@@ -84,4 +88,3 @@ const ProductCardSkeleton = () => {
 };
 
 export default ProductCardSkeleton;
-
