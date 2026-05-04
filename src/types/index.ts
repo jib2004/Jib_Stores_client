@@ -83,7 +83,6 @@ export interface userDetails{
     }
 }
 
-
 export interface BidProp{
     name?:string
     description?:string
@@ -91,3 +90,17 @@ export interface BidProp{
     yourBid?:number
     img?:string
 }
+
+export type ProductProp = {
+  currentPrice: string;
+  description: string;
+  endTime:string;
+  image: string;
+  name: string;
+  startTime: string;
+  startingPrice: string;
+  userId?: string;
+  userName?:string
+  email?:string
+  reference?:string
+};
