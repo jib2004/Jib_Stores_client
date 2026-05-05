@@ -11,10 +11,7 @@ import StatusTag from '../../components/OrderTag'
 
 const OrderPage = () => {
   const {id} = useParams()
-  // const navigate = useNavigate()
   const [products, setProducts] = useState([]);
-  // const {user} = useAppSelector(state =>state)
-  // const dispatch = useAppDispatch()
   const {data,error,status} = useGetUserOrdersQuery(id,{
     skip:!id
   })
@@ -26,49 +23,25 @@ const OrderPage = () => {
   }
 
 
-
-
-  // const orderProduct = data?.data?.map((item)=>{
-  //   return item.productDetails.map((product)=>{
-  //     return product.id
-  //   })
-  // })
-
   useMemo(()=>{ 
-    // const getCart = async (productId) =>{
-    //     for (const product of productId){
-    //       for (const productid of product){
-    //       try {
-    //               const res = await axios.get(`http://localhost:5000/buyer/product/${productid}/${user._id}`);
-    //               const newProduct = res.data.data;
-    //               setProducts((prev) => {
-    //               // Check if the product already exists in the array
-    //               if (!prev.find((product) => product._id === newProduct._id)) {
-    //                 return [...prev, newProduct]; // Add new product if it doesn't exist
-    //               }
-    //               return prev; // Return previous state if it exists
-    //       })
-
-    //               } catch (error) {
-    //                 console.log(error);
-    //               }
-    //             }}
-    //       } 
-
           if(data){
             setProducts(data?.data)
           }
-        //    setTimeout(()=>{
-        //   setLoading(false) 
-        // },import.meta.env.VITE_LOADING_TIMER )
-
-
       },[data])
       
 
   return (
     <App>
       <h1 className='p-4'>ORDERS</h1>
+
+       {
+        products.length === 0 && (
+          <div className=' h-svh md:h-[400px] flex justify-center items-center font-bold text-xl md:text-5xl'>
+            No Orders!
+          </div>
+        )
+      }
+
       <div className='flex flex-col gap-4 items-center p-4'>
         
           {products.length > 0 && products.map((item)=>(

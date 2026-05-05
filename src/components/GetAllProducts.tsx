@@ -11,6 +11,8 @@ const GetAllProducts = () => {
     if(status === 'rejected'){
         toast.error('Failed to fetch products. Please try again later.')
     }
+
+    console.log(data?.data)
   return (
     <div className='w-[90%] mx-auto flex flex-col gap-9 my-8 border-y-[2px] py-6'>
         <div className='h-fit  flex justify-between  py-4 '>
@@ -25,8 +27,25 @@ const GetAllProducts = () => {
           </>
           :
           <div className="h-fit  flex gap-4  py-4 w-full overflow-x-auto xl:w-auto">
+            {
+              data?.data === undefined &&( 
+              <div className= "w-screen text-center text-4xl font-bold ">
+                No Products Available! 
+              </div>)
+            }
+
+
           {data?.data && data?.data.length > 0 && data?.data.slice(0,6).map((item:productDetails)=>(
-          <Link key={item._id} to={`/user/product/${item._id}`}> <ProductCard name={item.title} img={`https://res.cloudinary.com/${import.meta.env.VITE_CLOUDINARY_KEY}/image/upload/${item.image[0]}`} price={item.price}  isDiscounted={item.isDisCount} discountPrice={item.discountedPrice} /></Link>
+          <Link 
+          key={item._id} 
+          to={`/user/product/${item._id}`}> 
+          <ProductCard name={item.title} 
+          img={`https://res.cloudinary.com/${import.meta.env.VITE_CLOUDINARY_KEY}/image/upload/${item.image[0]}`} 
+          price={item.price}  
+          isDiscounted={item.isDisCount} 
+          discountPrice={item.discountedPrice} 
+          />
+          </Link>
           ))}
           </div>
           }

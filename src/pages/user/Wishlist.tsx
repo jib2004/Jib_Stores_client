@@ -7,6 +7,7 @@ import axios from 'axios'
 import Loading from '../../components/Loading'
 import { useAppSelector } from '../../hooks/hooks'
 
+
 const Wishlist = () => {
   const {id} = useParams()
   
@@ -27,7 +28,6 @@ const Wishlist = () => {
   useEffect(()=>{
       const getWishlist = async (productId) =>{
             for (const id of productId){
-
               try {
                 const res = await axios.get(`https://jib-stores-backend.vercel.app/buyer/product/${id}/${user._id}`);
                    const newProduct = res.data.data;
@@ -58,6 +58,15 @@ const Wishlist = () => {
   return (
     <App>
       <Loading loading={loading}/>
+
+      {
+        products.length === 0 && (
+          <div className=' h-svh md:h-[400px] flex justify-center items-center font-bold text-xl md:text-5xl'>
+            Wishlist is Empty!
+          </div>
+        )
+      }
+
       <div className='w-[90%] overflow-x-hidden mx-auto flex flex-col gap-9 my-8 py-6'>
               <div className=' overflow-x-hidden  flex gap-3 py-4  flex-wrap'>
             {products && products.length > 0 && products.map((item)=>(

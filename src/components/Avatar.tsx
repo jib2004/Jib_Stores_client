@@ -66,10 +66,10 @@ export default function AccountMenu({ name, src }: avatarProp) {
     handleClose()
   }
 
-   const bidPage = () => {
-    navigate(`/user/bid`)
-    handleClose()
-  }
+  //  const bidPage = () => {
+  //   navigate(`/user/bid`)
+  //   handleClose()
+  // }
 
   const goHome = () => {
     navigate('/')
@@ -205,7 +205,7 @@ export default function AccountMenu({ name, src }: avatarProp) {
               </div>
             </button>
 
-             <button
+             {/* <button
               onClick={bidPage}
               className="flex items-center w-full px-6 py-3 text-sm text-gray-700 hover:bg-gradient-to-r hover:from-green-50 hover:to-emerald-50 hover:text-gray-900 transition-all duration-200 group"
             >
@@ -216,7 +216,7 @@ export default function AccountMenu({ name, src }: avatarProp) {
                 <p className="font-medium">Bid</p>
                 <p className="text-xs text-gray-500">Place bids on products</p>
               </div>
-            </button>
+            </button> */}
 
             {!pathname.includes('dashboard') && !pathname.includes('seller') && (
               <button

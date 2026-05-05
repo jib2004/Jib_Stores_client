@@ -8,13 +8,12 @@ import { persistStore } from 'redux-persist'; // Corrected import
 import { sellerApi } from './api/users/seller';
 import { buyerApi } from './api/users/buyer';
 import quantitySliceReducer from './api/quatitySlice/quantitySlice';
-import { bidApi } from './api/users/bid';
+
 
 const rootReducer = combineReducers({
     [userAuthApi.reducerPath]: userAuthApi.reducer,
     [sellerApi.reducerPath]: sellerApi.reducer,
     [buyerApi.reducerPath]:buyerApi.reducer,
-    [bidApi.reducerPath]: bidApi.reducer,
     user: userSliceReducer,
     quantity: quantitySliceReducer // Added quantity slice reducer
     
@@ -38,7 +37,6 @@ export const store = configureStore({
             userAuthApi.middleware,
             sellerApi.middleware,
             buyerApi.middleware,
-            bidApi.middleware
         )as unknown as ReturnType<typeof getDefaultMiddleware>,
 
 });

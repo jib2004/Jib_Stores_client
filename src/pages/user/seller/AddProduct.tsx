@@ -214,6 +214,7 @@ const AddProduct = () => {
                 <option value="automobile">Automobile</option>
                 <option value="pets">Pets</option>
                 <option value="groceries">Groceries</option>
+                <option value="health_beauty">Health & Beauty</option>
             </select>
             {errors.category && <span className='font-semibold text-red-500'>{errors.category.message}</span>}
         </div>

@@ -1,6 +1,8 @@
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
 import CategoriesCard from "./CategoriesCard";
+import { Link } from "react-router";
+
 
 const CategoriesCarosel = () => {
   return (
@@ -52,40 +54,40 @@ const CategoriesCarosel = () => {
         }
         }}>
     <SplideSlide>
-    <CategoriesCard title="Phones" imgSrc={'https://img.icons8.com/glyph-neue/56/iphone14-pro.png'}/>
+    <Link to={`/search/phones`}> <CategoriesCard title="Phones" imgSrc={'https://img.icons8.com/glyph-neue/56/iphone14-pro.png'}/></Link>
     </SplideSlide>
     <SplideSlide>
-        <CategoriesCard title="Fashion" imgSrc={'https://img.icons8.com/ios-filled/56/little-black-dress.png'}/>
+        <Link to={`/search/fashion`}><CategoriesCard title="Fashion" imgSrc={'https://img.icons8.com/ios-filled/56/little-black-dress.png'}/></Link>
     </SplideSlide>
     <SplideSlide>
-        <CategoriesCard title="Computing" imgSrc={'https://img.icons8.com/ios-filled/56/studio-display.png'}/>
+        <Link to={`/search/computing`}><CategoriesCard title="Computing" imgSrc={'https://img.icons8.com/ios-filled/56/studio-display.png'}/></Link>
     </SplideSlide>
     <SplideSlide>
-        <CategoriesCard title="Gaming" imgSrc={'https://img.icons8.com/pastel-glyph/56/controller.png'}/>
+        <Link to={`/search/gaming`}><CategoriesCard title="Gaming" imgSrc={'https://img.icons8.com/pastel-glyph/56/controller.png'}/></Link>
     </SplideSlide>
     <SplideSlide>
-        <CategoriesCard title="Electronics" imgSrc={'https://img.icons8.com/external-jumpicon-glyph-ayub-irawan/56/external-electronic-marketing-jumpicon-glyph-jumpicon-glyph-ayub-irawan.png'}/>
+        <Link to={`/search/electronics`}><CategoriesCard title="Electronics" imgSrc={'https://img.icons8.com/external-jumpicon-glyph-ayub-irawan/56/external-electronic-marketing-jumpicon-glyph-jumpicon-glyph-ayub-irawan.png'}/></Link>
     </SplideSlide>
     <SplideSlide>
-        <CategoriesCard title="Home & Lifestyle" imgSrc={'https://img.icons8.com/ios-filled/250/home.png'}/>
+        <Link to={`/search/home_lifestyle`}><CategoriesCard title="Home & Lifestyle" imgSrc={'https://img.icons8.com/ios-filled/250/home.png'}/></Link>
     </SplideSlide>
     <SplideSlide>
-        <CategoriesCard title="Baby's & Toys" imgSrc={'https://img.icons8.com/ios-filled/56/babys-room.png'}/>
+        <Link to={`/search/babies_toys`}><CategoriesCard title="Baby's & Toys" imgSrc={'https://img.icons8.com/ios-filled/56/babys-room.png'}/></Link>
     </SplideSlide>
     <SplideSlide>
-        <CategoriesCard title="Sport & Outdoor" imgSrc={'https://img.icons8.com/sf-black/56/weightlift.png'}/>
+        <Link to={`/search/sport_outdoor`}><CategoriesCard title="Sport & Outdoor" imgSrc={'https://img.icons8.com/sf-black/56/weightlift.png'}/></Link>
     </SplideSlide>
     <SplideSlide>
-        <CategoriesCard title="Health & Beauty" imgSrc={'https://img.icons8.com/ios-filled/56/doctors-bag.png'}/>
+        <Link to={`/search/health_beauty`}><CategoriesCard title="Health & Beauty" imgSrc={'https://img.icons8.com/ios-filled/56/doctors-bag.png'}/></Link>
     </SplideSlide>
     <SplideSlide>
-        <CategoriesCard title="Automobile" imgSrc={'https://img.icons8.com/ios-filled/56/sedan.png'}/>
+        <Link to={`/search/automobile`}><CategoriesCard title="Automobile" imgSrc={'https://img.icons8.com/ios-filled/56/sedan.png'}/></Link>
     </SplideSlide>
     <SplideSlide>
-        <CategoriesCard title="Pets" imgSrc={'https://img.icons8.com/ios-filled/56/pets--v1.png'}/>
+        <Link to={`/search/pets`}><CategoriesCard title="Pets" imgSrc={'https://img.icons8.com/ios-filled/56/pets--v1.png'}/></Link>
     </SplideSlide>
     <SplideSlide>
-        <CategoriesCard title="Groceries" imgSrc={'https://img.icons8.com/ios-filled/56/fast-moving-consumer-goods.png'}/>
+        <Link to={`/search/groceries`}><CategoriesCard title="Groceries" imgSrc={'https://img.icons8.com/ios-filled/56/fast-moving-consumer-goods.png'}/></Link>
     </SplideSlide>
 </Splide>
 </div>

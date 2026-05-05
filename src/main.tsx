@@ -27,10 +27,7 @@ import CartPage from './pages/user/CartPage.tsx';
 import CheckOutPage from './pages/user/CheckOutPage.tsx';
 import OrderPage from './pages/user/OrderPage.tsx';
 import SearchPage from './pages/user/SearchPage.tsx';
-import BidPage from './pages/user/bids/BidPage.tsx';
-import BidPayment from './pages/user/bids/BidPayment.tsx';
-import ManageBids from './pages/user/ManageBids.tsx';
-import CreateBid from './pages/user/bids/CreateBid.tsx';
+
 
 
 
@@ -110,23 +107,6 @@ const router = createBrowserRouter([
     {
       path: '/search/:query',
       element:<SearchPage/>
-    }
-    ,
-    {
-      path:'/user/bid/',
-      element:<BidPage/>
-    },
-    {
-      path:'/user/bid-payment/:id',
-      element:<BidPayment/>
-    },
-    {
-      path: '/user/bid/:id',
-      element:<ManageBids/>
-    },
-    {
-      path: '/user/create-bid/:id',
-      element:<CreateBid/>
     },
     {
       path: '*',
