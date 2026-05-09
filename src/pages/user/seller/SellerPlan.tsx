@@ -30,9 +30,7 @@ const SellerPlan = () => {
             }, 5000);
         } catch (error) {
             console.log(error)
-        }
-        
-        
+        }       
     }
 
     const subscribe = async (amt:number) =>{

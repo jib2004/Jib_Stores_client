@@ -66,10 +66,10 @@ export default function AccountMenu({ name, src }: avatarProp) {
     handleClose()
   }
 
-  //  const bidPage = () => {
-  //   navigate(`/user/bid`)
-  //   handleClose()
-  // }
+  const profilePage =() =>{
+    navigate(`/profile/${user._id}`)
+    handleClose()
+  }
 
   const goHome = () => {
     navigate('/')
@@ -154,7 +154,7 @@ export default function AccountMenu({ name, src }: avatarProp) {
           {/* Menu Items */}
           <div className="py-2">
             <button
-              onClick={handleClose}
+              onClick={profilePage}
               className="flex items-center w-full px-6 py-3 text-sm text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 hover:text-gray-900 transition-all duration-200 group"
             >
               <div className="w-10 h-10 bg-gradient-to-br from-blue-100 to-blue-200 group-hover:from-blue-200 group-hover:to-blue-300 rounded-xl flex items-center justify-center mr-4 transition-all duration-200">

@@ -27,6 +27,7 @@ import CartPage from './pages/user/CartPage.tsx';
 import CheckOutPage from './pages/user/CheckOutPage.tsx';
 import OrderPage from './pages/user/OrderPage.tsx';
 import SearchPage from './pages/user/SearchPage.tsx';
+import Profile from './pages/user/auth/Profile.tsx';
 
 
 
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <Home />,
+    },
+    {
+      path:'/profile/:id',
+      element:<Profile/>
     },
     {
       path: '/register',

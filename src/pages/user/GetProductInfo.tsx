@@ -1,4 +1,4 @@
-import { useEffect, useState} from 'react'
+import { useEffect, useState,useRef} from 'react'
 import {  useGetProductByIdQuery,useAddToWishListMutation,useUseAddToCartMutationMutation } from '../../api/users/buyer'
 import { useParams,useNavigate } from 'react-router'
 import App from '../../App';
@@ -11,6 +11,7 @@ import { resetQuantity } from '../../api/quatitySlice/quantitySlice';
 
 const GetProductInfo = () => {
     const [image,setImage] = useState(0)
+    const rev = useRef<HTMLTextAreaElement>(null)
     const user = useAppSelector(state => state.user)
     const {id} = useParams()
     const {data,status,error} = useGetProductByIdQuery({id,userId:user._id},{
@@ -64,6 +65,10 @@ const GetProductInfo = () => {
             
         }
         
+    }
+
+    const handleReviews = () =>{
+        console.log(rev.current.value)
     }
 
     const handleCart = async() =>{
@@ -156,9 +161,29 @@ const GetProductInfo = () => {
                             <h2 className="font-semibold text-xl mb-1">Description:</h2>
                             <article className='text-neutral-800'>{data.data?.description}</article>
                         </div>
-                        
+
+                        <div className='flex flex-col gap-4'>
+                        <h2 className='font-bold text-2xl'>Reviews</h2>
+                        <div>
+                        <textarea 
+                        ref={rev}
+                        className='border w-full px-4 py-2 rounded-md '
+                        name="review" 
+                        id="review"
+                        placeholder='Write a review'
+                        ></textarea>
+                        <button
+                        onClick={handleReviews} 
+                        className='border text-[14px] p-4 w-fit bg-purple-500 text-white font-medium  '>Submit Review</button>
+                        </div>
+                        {data.data?.reviews && data.data?.reviews.length > 0 ? "":
+                        <p className='text-center text-gray-500 font-semibold text-xl'>No Reviews</p>
+                        }
+                    </div>
                         </div>
                     
+
+
                     </div>
                 )}
         

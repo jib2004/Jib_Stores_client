@@ -39,11 +39,21 @@ const CartPage = () => {
     }
 
     
+    console.log(import.meta.env.MODE)
+
     useEffect(()=>{
       const getCart = async (productId) =>{
         for (const id of productId){
-    
+          
           try {
+            //http://localhost:5000
+            // if(import.meta.env.MODE === "development"){
+            //   res = await axios.get(`http://localhost:5000/buyer/product/${id}/${user._id}`);
+            // }else{
+            //   res = await axios.get(`https://jib-stores-backend.vercel.app/buyer/product/${id}/${user._id}`);
+            // }
+            //  const res = await axios.get(`http://localhost:5000/buyer/product/${id}/${user._id}`);
+            // console.log(id)
                   const res = await axios.get(`https://jib-stores-backend.vercel.app/buyer/product/${id}/${user._id}`);
                   const newProduct = res.data.data;
                   setProducts((prev) => {
@@ -63,11 +73,9 @@ const CartPage = () => {
                       basePrice:productPrice ,
                       quantity:1,
                       sellerId:newProduct.sellerId,
-                      email:newProduct.sellerName,
+                      sellerName:newProduct.sellerName,
                       productImg:newProduct.image[0]
                     }));
-
-
                   } catch (error) {
                     console.log(error);
                   }
