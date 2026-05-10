@@ -104,3 +104,13 @@ export type ProductProp = {
   email?:string
   reference?:string
 };
+
+export interface Review {
+    _id: string
+    review: string
+    userId: {
+        _id: string
+        name: string
+        profilePicture: string[]
+    }
+}

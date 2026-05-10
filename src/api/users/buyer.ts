@@ -47,7 +47,18 @@ export const buyerApi = createApi({
             }),
             getSearchResults:builder.query({
                 query:(query) => `/search/${query}`
+            }),
+            getReviews: builder.query({
+                query:(productId) => `/reviews/${productId}`
+            }),
+            createReview:builder.mutation({
+                query:({productId,userId,body})=>({
+                    url:`/review/${productId}/${userId}`,
+                    method:"POST",
+                    body
+                })
             })
+
         })
 })
 
@@ -61,5 +72,7 @@ export const {
     useGetCartByIdQuery,
     useCreateOrderMutation,
     useGetUserOrdersQuery,
-    useGetSearchResultsQuery
+    useGetSearchResultsQuery,
+    useGetReviewsQuery,
+    useCreateReviewMutation
 } = buyerApi

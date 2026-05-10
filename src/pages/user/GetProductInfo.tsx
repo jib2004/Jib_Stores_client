@@ -1,5 +1,5 @@
 import { useEffect, useState,useRef} from 'react'
-import {  useGetProductByIdQuery,useAddToWishListMutation,useUseAddToCartMutationMutation } from '../../api/users/buyer'
+import {  useGetProductByIdQuery,useAddToWishListMutation,useUseAddToCartMutationMutation, useGetReviewsQuery, useCreateReviewMutation } from '../../api/users/buyer'
 import { useParams,useNavigate } from 'react-router'
 import App from '../../App';
 import { FaCartShopping } from "react-icons/fa6";
@@ -8,11 +8,14 @@ import { toast,Toaster } from 'sonner';
 import { useAppSelector,useAppDispatch } from '../../hooks/hooks';
 import { addToWishlist,removeFromWishlist,addedProductToCart,removeFromCart } from '../../api/userSlice/userSlice';
 import { resetQuantity } from '../../api/quatitySlice/quantitySlice';
+import { Review } from '../../types';
 
 const GetProductInfo = () => {
     const [image,setImage] = useState(0)
     const rev = useRef<HTMLTextAreaElement>(null)
     const user = useAppSelector(state => state.user)
+    const [reviews,setReviews] = useState<Review[]>([])
+    const [loadinReivewPost,setLoadinReivewPost] = useState<boolean>(false)
     const {id} = useParams()
     const {data,status,error} = useGetProductByIdQuery({id,userId:user._id},{
         skip:!id,
@@ -20,6 +23,17 @@ const GetProductInfo = () => {
       refetchOnFocus: true,
       refetchOnMountOrArgChange: true,
     })
+
+    const { data:userReviews} = useGetReviewsQuery(id,{
+        skip:!id,
+        refetchOnReconnect: true,
+      refetchOnFocus: true,
+      refetchOnMountOrArgChange: true,
+    })
+
+    const [createReview] = useCreateReviewMutation()
+
+
     const [wishList] = useAddToWishListMutation()
     const dispatch = useAppDispatch()
     const [isWishList, setIsWishList] = useState(false);
@@ -67,8 +81,25 @@ const GetProductInfo = () => {
         
     }
 
-    const handleReviews = () =>{
-        console.log(rev.current.value)
+    const handleReviews = async () =>{
+        if(!rev.current.value){
+         toast.warning('This Field cannot be empty')
+         return
+        }
+        setLoadinReivewPost(true)
+        try {
+            await createReview({
+                productId:id,
+                userId:user._id,
+                body:{
+                    review:rev.current.value
+                }
+            }).unwrap()
+        } catch (error) {
+            toast.error(error?.data.message)
+        }finally{
+            setLoadinReivewPost(false)
+        }
     }
 
     const handleCart = async() =>{
@@ -95,12 +126,16 @@ const GetProductInfo = () => {
         }
     }
 
-    
 
     useEffect(()=>{
          const findWish = user.wishlist.find((item) => item === data?.data?._id);
          if ( findWish) {
       setIsWishList(!isWishList);
+      
+    }
+
+    if(userReviews?.status){
+        setReviews(userReviews.data.reviews)
     }
     },[data])
     
@@ -142,7 +177,7 @@ const GetProductInfo = () => {
                         <div className='flex gap-2 items-center text-sm'>
                             {/* <HalfRating rating={rate}/> */}
                             <p className='text-neutral-600'>{data.data?.rating?.count} reviews</p>
-                            <p className='text-neutral-600'><span className='text-neutral-700'>Total Reviews:</span> {data.data?.rating?.rate.length}</p>
+                            <p className='text-neutral-600'><span className='text-neutral-700'>Total Reviews:</span> {reviews?.length}</p>
                         </div>
 
                         <div>
@@ -174,11 +209,36 @@ const GetProductInfo = () => {
                         ></textarea>
                         <button
                         onClick={handleReviews} 
-                        className='border text-[14px] p-4 w-fit bg-purple-500 text-white font-medium  '>Submit Review</button>
+                        disabled={loadinReivewPost}
+                        className='border text-[14px] p-4 w-fit bg-purple-500 text-white font-medium disabled:bg-purple-800 '>Submit Review</button>
                         </div>
-                        {data.data?.reviews && data.data?.reviews.length > 0 ? "":
-                        <p className='text-center text-gray-500 font-semibold text-xl'>No Reviews</p>
+                        <ul className='flex flex-col gap-4'>
+                        {reviews && reviews.length > 0 ? reviews?.map(review=>(
+                            <li>
+                                <figure className="flex items-center gap-3">
+                                    <div className='h-[60px] '>
+                                    <img 
+                                    className='w-[60px] aspect-square rounded-full border-2'
+                                    src={`https://res.cloudinary.com/${import.meta.env.VITE_CLOUDINARY_KEY}/image/upload/${review.userId.profilePicture[0]}`} 
+                                    alt={`profile_pic`} />
+                                    </div>
+                                    <figcaption>
+                                        <div className='text-[14px] font-medium text-gray-500'>
+                                            {review.userId.name}
+                                        </div>
+
+                                        <div className='text-[18px] font-medium'>
+                                            {review.review}
+                                        </div>
+                                    </figcaption>
+                                </figure>
+                            </li>
+                        ))
+                        
+                        :
+                        <li className='text-center text-gray-500 font-semibold text-xl'>No Reviews</li>
                         }
+                        </ul>
                     </div>
                         </div>
                     
