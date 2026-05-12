@@ -98,8 +98,15 @@ export const userAuthApi = createApi({
             method:'POST',
 
         })
+    }),
+    profileUpdate:builder.mutation({
+        query:({id,body})=>({
+            url:`/profile/${id}`,
+            method:"PUT",
+            body
+        })
     })    
 })
 })
 
-export const {useSignUpMutation,useGoogleAuthMutation,useLoginMutation,useGetUserInformationQuery,useSendOTPMutation,useVerifyOTPPasswordMutation,useVerifyOTPEmailMutation,useChangePasswordMutation,useLogoutMutation,useUserDetailsUpdateMutation,useUserCreatePlanMutation,useUserVerificationPaymentMutation,useCookieCheckMutation} = userAuthApi
+export const {useSignUpMutation,useGoogleAuthMutation,useLoginMutation,useGetUserInformationQuery,useSendOTPMutation,useVerifyOTPPasswordMutation,useVerifyOTPEmailMutation,useChangePasswordMutation,useLogoutMutation,useUserDetailsUpdateMutation,useUserCreatePlanMutation,useUserVerificationPaymentMutation,useCookieCheckMutation,useProfileUpdateMutation} = userAuthApi

@@ -36,6 +36,11 @@ export const userSlice = createSlice({
         getUserDetails:(state,action)=>{
            return action.payload;
         },
+
+        setUserDetails:(state,action)=>{
+            state = action.payload
+        },
+        
         setEmailForPasswordChange:(state,action)=>{
            state.email=action.payload;
         },
@@ -88,6 +93,7 @@ export const {
     removeFromCart,
     setUserAddress,
     clearCart,
+    setUserDetails
     
 } = userSlice.actions
 export default userSlice.reducer

@@ -23,7 +23,7 @@ type avatarProp = {
   isSeller?: boolean
 }
 
-export default function AccountMenu({ name, src }: avatarProp) {
+export default function AccountMenu({ name }: avatarProp) {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [logoutMutation] = useLogoutMutation()
   const user = useAppSelector(state => state.user)
@@ -100,9 +100,9 @@ export default function AccountMenu({ name, src }: avatarProp) {
           aria-expanded={open ? 'true' : undefined}
         >
           <div className="w-full h-full bg-white rounded-xl flex items-center justify-center overflow-hidden">
-            {src ? (
+            {user.profilePicture.length > 0 ? (
               <img
-                src={src}
+                src={`https://res.cloudinary.com/${import.meta.env.VITE_CLOUDINARY_KEY}/image/upload/${user.profilePicture[0]}`}
                 alt={name}
                 className="w-full h-full object-cover rounded-xl"
               />
@@ -124,17 +124,17 @@ export default function AccountMenu({ name, src }: avatarProp) {
               <div className="relative flex-shrink-0">
                 <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 p-0.5">
                   <div className="w-full h-full bg-white rounded-xl flex items-center justify-center overflow-hidden">
-                    {src ? (
-                      <img
-                        src={src}
-                        alt={name}
-                        className="w-full h-full object-cover rounded-xl"
-                      />
-                    ) : (
-                      <span className="text-lg font-bold bg-gradient-to-br from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                        {stringAvatar(name).children}
-                      </span>
-                    )}
+                    {user.profilePicture.length > 0 ? (
+              <img
+                src={`https://res.cloudinary.com/${import.meta.env.VITE_CLOUDINARY_KEY}/image/upload/${user.profilePicture[0]}`}
+                alt={name}
+                className="w-full h-full object-cover rounded-xl"
+              />
+            ) : (
+              <span className="text-sm font-bold bg-gradient-to-br from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                {stringAvatar(name).children}
+              </span>
+            )}
                   </div>
                 </div>
                 <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-green-500 rounded-full border-2 border-white shadow-sm"></div>

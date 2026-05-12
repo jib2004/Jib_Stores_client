@@ -1,11 +1,21 @@
 // import React from 'reactnamennnnnnjkljbndscvjbcdsjkcdsjldscjbcsd jkscdjkdcsjkdscnmkmk sdcjncsdjk sdjkn'
-import { useParams } from 'react-router'
+
+import App from '../../../App'
+import ProfileLayout from '../../../layouts/ProfileLayout'
+import PersonalInfo from '../../../components/profile/PersonalInfo'
+import { Toaster } from 'sonner'
+import PasswordAndSecurity from '../../../components/profile/PasswordAndSecurity'
 
 const Profile = () => { 
-    const params = useParams()
-    console.log(params.id)
   return (
-    <div>Profile</div>
+    <App>
+      <ProfileLayout>
+      <PersonalInfo />
+      <PasswordAndSecurity/>
+      </ProfileLayout>
+
+      <Toaster position='top-right'/>
+      </App>
   )
 }
 

@@ -80,7 +80,8 @@ export interface userDetails{
         amount:number,
         status:'pending' | 'successful' | 'failed',
         authorization_url:string
-    }
+    },
+    created_at?:string
 }
 
 export interface BidProp{

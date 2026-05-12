@@ -95,6 +95,7 @@ const GetProductInfo = () => {
                     review:rev.current.value
                 }
             }).unwrap()
+            toast.success("Review Posted!")
         } catch (error) {
             toast.error(error?.data.message)
         }finally{
