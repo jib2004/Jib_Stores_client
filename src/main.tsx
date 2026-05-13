@@ -28,7 +28,7 @@ import CheckOutPage from './pages/user/CheckOutPage.tsx';
 import OrderPage from './pages/user/OrderPage.tsx';
 import SearchPage from './pages/user/SearchPage.tsx';
 import Profile from './pages/user/auth/Profile.tsx';
-
+import OrderHistory from './pages/user/auth/OrderHistory.tsx';
 
 
 
@@ -40,6 +40,10 @@ const router = createBrowserRouter([
     {
       path:'/profile/:id',
       element:<Profile/>
+    },
+    {
+      path:"/order-history/:id",
+      element:<OrderHistory/>
     },
     {
       path: '/register',

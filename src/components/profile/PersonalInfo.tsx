@@ -82,7 +82,7 @@ return (
                 />
                 <img 
                 className='w-[104px] aspect-square object-cover rounded-full  '
-                src={userInfo?.profilePicture?.length > 0 ? `https://res.cloudinary.com/${import.meta.env.VITE_CLOUDINARY_KEY}/image/upload/${userInfo.profilePicture[0]}` : `https://res.cloudinary.com/${import.meta.env.VITE_CLOUDINARY_KEY}/image/upload/samples/smile`}
+                src={userInfo?.profilePicture?.length > 0 ? `https://res.cloudinary.com/${import.meta.env.VITE_CLOUDINARY_KEY}/image/upload/${userInfo.profilePicture[0]}` : `https://res.cloudinary.com/${import.meta.env.VITE_CLOUDINARY_KEY}/image/upload/profile_n40jzx`}
                 // src={`https://res.cloudinary.com/${import.meta.env.VITE_CLOUDINARY_KEY}/image/upload/samples/smile`} 
                 alt="profile_pic" />
                 </div>

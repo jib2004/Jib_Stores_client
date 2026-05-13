@@ -5,6 +5,7 @@ import ProfileLayout from '../../../layouts/ProfileLayout'
 import PersonalInfo from '../../../components/profile/PersonalInfo'
 import { Toaster } from 'sonner'
 import PasswordAndSecurity from '../../../components/profile/PasswordAndSecurity'
+import OrderTable from '../../../components/profile/OrderTable'
 
 const Profile = () => { 
   return (
@@ -12,6 +13,7 @@ const Profile = () => {
       <ProfileLayout>
       <PersonalInfo />
       <PasswordAndSecurity/>
+      <OrderTable/>
       </ProfileLayout>
 
       <Toaster position='top-right'/>

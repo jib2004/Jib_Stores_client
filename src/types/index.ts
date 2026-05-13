@@ -115,3 +115,27 @@ export interface Review {
         profilePicture: string[]
     }
 }
+
+interface ProductDetail {
+    id: string
+    basePrice: number
+    email: string
+    orderStatus: string
+    productImg: string
+    productName: string
+    quantity: number
+    sellerId: string
+}
+
+export interface Order {
+    _id: string
+    address: string
+    buyerId: string
+    created_at: string
+    dateOrdered: string
+    orderNumber: string
+    orderStatus: string
+    productDetails: ProductDetail[]
+    updated_at: string
+    __v: number
+}

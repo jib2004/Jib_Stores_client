@@ -24,7 +24,7 @@ const GetProductInfo = () => {
       refetchOnMountOrArgChange: true,
     })
 
-    const { data:userReviews} = useGetReviewsQuery(id,{
+    const { data:userReviews,refetch} = useGetReviewsQuery(id,{ //refetch -> this is a method used to fetch for the data once an event has been triggered
         skip:!id,
         refetchOnReconnect: true,
       refetchOnFocus: true,
@@ -95,11 +95,14 @@ const GetProductInfo = () => {
                     review:rev.current.value
                 }
             }).unwrap()
+            refetch()
+            
             toast.success("Review Posted!")
         } catch (error) {
             toast.error(error?.data.message)
         }finally{
             setLoadinReivewPost(false)
+            rev.current.value = ""
         }
     }
 
@@ -138,7 +141,7 @@ const GetProductInfo = () => {
     if(userReviews?.status){
         setReviews(userReviews.data.reviews)
     }
-    },[data])
+    },[data,userReviews])
     
     
   return (
@@ -214,13 +217,13 @@ const GetProductInfo = () => {
                         className='border text-[14px] p-4 w-fit bg-purple-500 text-white font-medium disabled:bg-purple-800 '>Submit Review</button>
                         </div>
                         <ul className='flex flex-col gap-4'>
-                        {reviews && reviews.length > 0 ? reviews?.map(review=>(
+                        {reviews && reviews?.length > 0 ? reviews?.map(review=>(
                             <li>
                                 <figure className="flex items-center gap-3">
                                     <div className='h-[60px] '>
                                     <img 
                                     className='w-[60px] aspect-square rounded-full border-2'
-                                    src={`https://res.cloudinary.com/${import.meta.env.VITE_CLOUDINARY_KEY}/image/upload/${review.userId.profilePicture[0]}`} 
+                                    src={`https://res.cloudinary.com/${import.meta.env.VITE_CLOUDINARY_KEY}/image/upload/${review?.userId?.profilePicture[0]}`} 
                                     alt={`profile_pic`} />
                                     </div>
                                     <figcaption>
