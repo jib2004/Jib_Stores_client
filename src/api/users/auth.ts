@@ -105,8 +105,31 @@ export const userAuthApi = createApi({
             method:"PUT",
             body
         })
-    })    
+    }),
+    updatePassword:builder.mutation({
+                query:({userId,body})=>({
+                    url:`/password-change/${userId}`,
+                    method:"PUT",
+                    body
+                })
+            })    
 })
 })
 
-export const {useSignUpMutation,useGoogleAuthMutation,useLoginMutation,useGetUserInformationQuery,useSendOTPMutation,useVerifyOTPPasswordMutation,useVerifyOTPEmailMutation,useChangePasswordMutation,useLogoutMutation,useUserDetailsUpdateMutation,useUserCreatePlanMutation,useUserVerificationPaymentMutation,useCookieCheckMutation,useProfileUpdateMutation} = userAuthApi
+export const {
+    useSignUpMutation,
+    useGoogleAuthMutation,
+    useLoginMutation,
+    useGetUserInformationQuery,
+    useSendOTPMutation,
+    useVerifyOTPPasswordMutation,
+    useVerifyOTPEmailMutation,
+    useChangePasswordMutation,
+    useLogoutMutation,
+    useUserDetailsUpdateMutation,
+    useUserCreatePlanMutation,
+    useUserVerificationPaymentMutation,
+    useCookieCheckMutation,
+    useProfileUpdateMutation,
+    useUpdatePasswordMutation
+} = userAuthApi

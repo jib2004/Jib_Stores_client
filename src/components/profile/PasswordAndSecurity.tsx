@@ -1,14 +1,14 @@
 import { ChangeEvent, FormEvent,useState } from 'react'
 import psIcon from '../../assets/img/passwordandsecurity.svg'
 import { toast } from 'sonner'
-import { useProfileUpdateMutation } from '../../api/users/auth'
+import { useUpdatePasswordMutation } from '../../api/users/auth'
 import { useAppSelector } from '../../hooks/hooks'
 
 
 const PasswordAndSecurity = () => {
     const [userChanges,setUserChanges] = useState<Record<string, string>>({})
     const [loading, setLoading] = useState<boolean>(false)
-    const [passwordChange] = useProfileUpdateMutation()
+    const [passwordChange] = useUpdatePasswordMutation()
 
     const user = useAppSelector(state => state.user ) 
 
@@ -41,11 +41,8 @@ const PasswordAndSecurity = () => {
         try {
             
             await passwordChange({
-                id:user._id,
-                body:{
-                    password:userChanges.password,
-                    newPassword:userChanges.newPassword
-                }
+                userId:user._id,
+                body:userChanges
             }).unwrap()
             toast.success("Password Changed Successfully!")
         } catch (error) {

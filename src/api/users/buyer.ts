@@ -57,7 +57,7 @@ export const buyerApi = createApi({
                     method:"POST",
                     body
                 })
-            })
+            }),
 
         })
 })
