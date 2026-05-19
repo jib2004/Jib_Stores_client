@@ -43,7 +43,7 @@ export const buyerApi = createApi({
                 })
             }),
             getUserOrders:builder.query({
-                query:(id)=> `/order/${id}`
+                query:({ id, page = 1, limit = 10 })=> `/order/${id}?page=${page}&limit=${limit}`
             }),
             getSearchResults:builder.query({
                 query:(query) => `/search/${query}`

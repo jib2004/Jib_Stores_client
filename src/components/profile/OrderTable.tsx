@@ -1,9 +1,11 @@
-import React from 'react'
 import recent_icon from "../../assets/img/recent_icon.svg"
 import MuiOrdersTable from './MuiOrdersTable'
 import { Link } from 'react-router'
+import { useAppSelector } from '../../hooks/hooks'
 
 const OrderTable = () => {
+    const user = useAppSelector(state => state.user)
+    
   return (
     <section className='bg-white'>
         <div>
@@ -13,11 +15,11 @@ const OrderTable = () => {
                 <figcaption className='text-[#181C1E] font-semibold text-2xl'>Recent Orders</figcaption>
             </figure>
 
-            <Link to={``} className='text-[#036780] font-bold'>View All Orders</Link>
+            <Link to={`/order-history/${user._id}`} className='text-[#036780] font-bold'>View All Orders</Link>
             </div>
 
             <div>
-                <MuiOrdersTable />
+                <MuiOrdersTable page={1} limit={2} showPagination={false}/>
             </div>
         </div>
     </section>

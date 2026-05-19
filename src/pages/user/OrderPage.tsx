@@ -3,16 +3,14 @@ import App from '../../App'
 import { useGetUserOrdersQuery } from '../../api/users/buyer'
 // import { useAppSelector,useAppDispatch } from '../../hooks/hooks'
 import { useParams } from 'react-router'
-// import { productDetails } from '../../types'
-// import axios from 'axios'
-// import { useNavigate } from 'react-router'
+
 import StatusTag from '../../components/OrderTag'
 
 
 const OrderPage = () => {
   const {id} = useParams()
   const [products, setProducts] = useState([]);
-  const {data,error,status} = useGetUserOrdersQuery(id,{
+  const {data,error,status} = useGetUserOrdersQuery({id:id,page:1,limit:10},{
     skip:!id
   })
 

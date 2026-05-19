@@ -2,12 +2,13 @@ import React from 'react'
 import { appProps } from '../types'
 import profile_icon from "../assets/img/profile_icon.svg"
 import order_icon from "../assets/img/order_icon.svg"
-import { useNavigate } from 'react-router'
+import { useNavigate,useLocation } from 'react-router'
 import { useAppSelector } from '../hooks/hooks'
 
 const ProfileLayout = ({children}:appProps) => {
 
   const navigate = useNavigate()
+  const {pathname} = useLocation()
   const {_id} = useAppSelector(state => state.user)
 
   return (
@@ -20,16 +21,16 @@ const ProfileLayout = ({children}:appProps) => {
     <section className='flex gap-5'>
       <aside className='bg-white h-fit basis-[20%] p-4 rounded-xl'>
         <ul className='flex flex-col gap-4'>
-          <li onClick={()=>navigate(`/profile/${_id}`)} className="px-2 py-3 border rounded-lg">
+          <li onClick={()=>navigate(`/profile/${_id}`)} className={`px-2 cursor-pointer py-3 rounded-lg ${pathname.includes('profile') && "bg-[#a8d5e6]"}`}>
             <figure className='flex gap-2 items-center'>
               <img src={profile_icon} alt="profile_icon" />
-              <figcaption className='text-[#036780] cursor-pointer leading-5 tracking-[0.7px] text-[14px] font-semibold'>Personal Info</figcaption>
+              <figcaption className={`text-[#036780] cursor-pointer leading-5 tracking-[0.7px] text-[14px] font-semibold`}>Personal Info</figcaption>
             </figure>
           </li>
-          <li onClick={()=> navigate(`/order-history/${_id}`)} className="px-2 py-3 border rounded-lg">
+          <li onClick={()=> navigate(`/order-history/${_id}`)} className={`px-2 cursor-pointer py-3 rounded-lg ${pathname.includes('order-history') && "bg-[#a8d5e6]"}`}>
             <figure className='flex gap-2 items-center'>
               <img src={order_icon} alt="order_icon" />
-              <figcaption className='text-[#036780] cursor-pointer leading-5 tracking-[0.7px] text-[14px] font-semibold'>Order History</figcaption>
+              <figcaption className={`text-[#036780]  leading-5 tracking-[0.7px] text-[14px] font-semibold`}>Order History</figcaption>
             </figure>
           </li>
         </ul>
