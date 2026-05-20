@@ -12,6 +12,7 @@ import { Order } from '../../types';
 import { FaEye,FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 
 
+
 type muiOrdersTableProp = {
   page:number,
   limit:number,
@@ -25,7 +26,7 @@ const MuiOrdersTable = ({page,limit,setPage,showPagination}:muiOrdersTableProp) 
 
     const [rows,setRows] = useState<Order[]>([])
 
-    const {data:userOrders,error,isError} = useGetUserOrdersQuery({id:params.id,page,limit},{
+    const {data:userOrders,error,isError,isLoading} = useGetUserOrdersQuery({id:params.id,page,limit},{
         skip:!params.id,
         refetchOnReconnect: true,
         refetchOnFocus: true,
@@ -50,8 +51,10 @@ useEffect(()=>{
 },[userOrders])
 
 
+
   return (
     <>
+    {isLoading && <div>loading....</div>}
      <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>

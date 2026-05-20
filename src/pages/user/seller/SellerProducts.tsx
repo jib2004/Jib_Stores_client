@@ -31,7 +31,7 @@ if (error && 'status' in error && error.status === 401) {
   }
 
   useEffect(()=>{
-    if(data ){
+    if(data){
       setUserProducts(data?.data as productDetails[])
     }
   },[data])
@@ -47,7 +47,7 @@ if (error && 'status' in error && error.status === 401) {
 
 
         <div>
-          <div className="grid grid-cols-4 gap-10  w-[90%] mx-auto mt-2  ">
+          <div className="grid grid-cols-3 gap-10  w-[90%] mx-auto mt-2  ">
           <Suspense fallback={<ProductCardSkeleton/>}>
           {status === 'pending' ?
             <>

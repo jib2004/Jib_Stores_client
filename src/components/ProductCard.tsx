@@ -16,7 +16,7 @@ type productProp={
 
 const ProductCard = ({name,price,img,isDiscounted,discountPrice}:productProp) => {
   return (
-    <div className='group card-hover w-[330px] h-[330px] mx-auto cursor-pointer relative overflow-hidden rounded-2xl bg-white shadow-sm'>
+    <div className='group card-hover  w-[330px] h-[330px] mx-auto cursor-pointer relative overflow-hidden rounded-2xl bg-white shadow-sm'>
         {/* Product Image Container */}
         <div className='relative bg-neutral-100 w-full h-2/3 rounded-t-2xl overflow-hidden'>
             <img 

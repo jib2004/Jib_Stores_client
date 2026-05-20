@@ -14,7 +14,7 @@ const OrdersList = ({ orders, sellerId }) => {
   const [statusSet, setStatusSet] = useState([])
 
   
-  console.log(statusSet)
+  // console.log(statusSet)
   // Flatten all productDetails from all orders into a single array and filter by sellerId
   const allProductDetails = orders?.flatMap((order) =>
     (order.productDetails || [])
@@ -32,7 +32,7 @@ const OrdersList = ({ orders, sellerId }) => {
 
 
 
-  console.log(allProductDetails)
+  
 
   // Initialize statusSet with current statuses
   useEffect(() => {
@@ -65,6 +65,8 @@ if (allProductDetails.length > 0) {
       console.log(error)
     }
   }
+
+
 
   if (allProductDetails.length === 0) {
     return <div className="text-slate-500">No orders yet.</div>
@@ -100,7 +102,7 @@ if (allProductDetails.length > 0) {
                 <span>{product.productName} </span>
               </td>
               <td className="py-2 px-4">{product.quantity}</td>
-              <td className="py-2 px-4">₦{product.price?.toLocaleString() || '0.00'}</td>
+              <td className="py-2 px-4">₦{(product.basePrice * product.quantity).toLocaleString() || '0.00'}</td>
               <td className="py-2 px-4">
                 <select
                   className="border rounded px-2 py-1"

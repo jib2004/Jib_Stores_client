@@ -9,6 +9,7 @@ import Slide from '@mui/material/Slide';
 import { TransitionProps } from '@mui/material/transitions';
 import { useDeleteSellerProductMutation } from '../api/users/seller';
 import { useNavigate } from 'react-router';
+import { toast } from 'sonner';
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
@@ -36,16 +37,15 @@ export default function AlertDialogSlide({openFunc,open,id,sellerId}:dialoguePro
         // navigate(`/seller/product/${sellerId}`)
         setIsloading(true)
         try {
-            setIsloading(false)
             await deleteProduct({id,sellerId}).unwrap()
+            toast.success("Deleted Successful")
             navigate(`/seller/product/${sellerId}`)
         } catch (error) {
             console.log(error)
-            setIsloading(false)
         }finally{
           setTimeout(() => {
             setIsloading(false)
-            navigate(`/seller/product/${sellerId}`)
+            
           }, 10000);
         }
     }
